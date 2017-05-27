@@ -63,6 +63,37 @@ $base-font-size: 16px;
 $base-line-height: 1.42;
 $base-font-family: -apple-system, BlinkMacSystemFont, "PingFang SC","Helvetica Neue",STHeiti,"Microsoft Yahei",Tahoma,Simsun,sans-serif !default;
 $body-background-color: #f5f5f5;
-
 $default-alink-color: #7e8c8d;
 
+// font size
+// -----------------------------------------------------------------------------
+$font-size-map: (
+	tiny: 12,
+	small: 14,
+	large: 18,
+	xlarge: 22
+) !default;
+
+// layout
+// -----------------------------------------------------------------------------
+$layout-padding-map: (
+  none: 0,
+  xxs: 5,
+  xs: 10,
+  sm: 15,
+  md: 20,
+  lg: 30,
+  xl: 40,
+  xxl: 50
+) !default;
+
+$layout-margin-map: (
+  none: 0,
+  xxs: 5,
+  xs: 10,
+  sm: 15,
+  md: 20,
+  lg: 30,
+  xl: 40,
+  xxl: 50
+) !default;
