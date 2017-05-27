@@ -1,0 +1,168 @@
+@charset "UTF-8";
+//
+// animation
+// -----------------------------------------------------------------------------
+//
+
+// ##
+// 过渡设定
+@mixin transition($transition...) {
+  @include setPrefixer( (transition: $transition) );
+}
+
+// 过渡影响的属性
+@mixin transition-property($transitionProperty...) {
+  @include setPrefixer( (transition-property: $transitionProperty) );
+}
+
+// 过渡时间
+@mixin transition-duration($times...) {
+  @include setPrefixer( (transition-duration: $times) );
+}
+
+// 过渡影响的时间函数
+@mixin transition-timing-function($timeFn...) {
+  @include setPrefixer( (transition-timing-function: $timeFn) );
+}
+
+// 过渡影响的延迟时间
+@mixin transition-delay($delay...) {
+  @include setPrefixer( (transition-delay: $delay) );
+}
+
+
+// ##
+// 动画设定
+@mixin animation($animation...) {
+  @include setPrefixer( (animation: $animation) );
+}
+
+// 动画对应规则的名字
+@mixin animation-name($animationName...) {
+  @include setPrefixer( (animation-name: $animationName) );
+}
+
+// 动画持续的时间
+@mixin animation-duration($animationTimes...) {
+  @include setPrefixer( (animation-duration: $animationTimes) );
+}
+
+// 动画的时间函数
+@mixin animation-timing-function($timeFn...) {
+  @include setPrefixer( (animation-timing-function: $timeFn) );
+}
+
+// 动画的循环次数
+@mixin animation-iteration-count($loops...) {
+  @include setPrefixer( (animation-iteration-count: $loops) );
+}
+
+// 动画播放的正反方向
+@mixin animation-direction($direction...) {
+  @include setPrefixer( (animation-direction: $direction) );
+}
+
+// 动画的播放状态
+@mixin animation-play-state($state...) {
+  @include setPrefixer( (animation-play-state: $state) );
+}
+
+// 动画的播放延迟时间
+@mixin animation-delay($delay...) {
+  @include setPrefixer( (animation-delay: $delay) );
+}
+
+// 动画的属性填充方式
+@mixin animation-fill-mode($fillMode...) {
+  @include setPrefixer( (animation-fill-mode: $fillMode) );
+}
+
+// 动画规则设定
+@mixin keyframes($aniamtedName) {
+  @-webkit-keyframes #{$aniamtedName} {
+    @content;
+  }
+  @keyframes #{$aniamtedName} {
+    @content;
+  }
+}
+
+
+// ##
+// 变换操作
+@mixin transform($transformFn...) {
+  @include setPrefixer( (transform: $transformFn) );
+}
+
+// 2D平移变换
+@mixin translate($tx: 0, $ty: 0) {
+  $x : parseInt($tx);
+  $y : parseInt($ty);
+
+  @if $y == 0 {
+    @include transform( translate($x * 1px) );
+  } @else {
+    @include transform( translate($x * 1px, $y * 1px) );
+  }
+}
+
+// 进行X轴的平移变换
+@mixin translateX($tx) {
+  $x : parseInt($tx);
+
+  @include transform( translateX($x * 1px) );
+}
+
+// 进行Y轴的平移变换
+@mixin translateY($ty) {
+  $y : parseInt($ty);
+
+  @include transform( translateY($y * 1px) );
+}
+
+// 缩放变换
+@mixin scale($s) {
+  @include transform( scale($s) );
+}
+
+// 进行X轴的缩放变换
+@mixin scaleX($sx) {
+  @include transform( scaleX($sx) );
+}
+
+// 进行Y轴的缩放变换
+@mixin scaleY($sy) {
+  @include transform( scaleX($sy) );
+}
+
+// 旋转变换
+@mixin rotate($angle) {
+  @include transform( rotate($angle) );
+}
+
+// 倾斜拉伸变换
+@mixin skew($ax: 0deg, $ay: 0deg) {
+  $x: parseInt($ax);
+  $y: parseInt($ay);
+
+  @if $y == 0 {
+    @include transform( skew($x * 1deg) );
+  } @else {
+    @include transform( skew($x * 1deg, $y * 1deg) );
+  }
+
+}
+
+// 进行X轴的倾斜拉伸变换
+@mixin skewX($ax) {
+  $x: parseInt($ax);
+
+  @include transform( skewX($x * 1deg) );
+}
+
+// 进行Y轴的倾斜拉伸变换
+@mixin skewY($ay) {
+  $y: parseInt($ay);
+
+  @include transform( skewX($y * 1deg) );
+}

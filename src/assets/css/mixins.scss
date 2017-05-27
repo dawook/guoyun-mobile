@@ -1,0 +1,106 @@
+// mixins
+// -----------------------------------------------------------------------------
+
+// prefix
+// -----------------------------------------------------------------------------
+@mixin setPrefixer($args, $prefix: $prefix-list) {
+  @each $key, $val in $args {
+    @if $prefix {
+      @each $prefixVal in $prefix {
+        #{'-' + $prefixVal + '-' + $key}: #{$val};
+      }
+    }
+    #{$key}: #{$val};
+  }
+}
+
+// box-sizing
+// -----------------------------------------------------------------------------
+@mixin box-sizing($boxModel: border-box) {
+  @include setPrefixer( (box-sizing: $boxModel) );
+}
+
+
+// placeholder
+// -----------------------------------------------------------------------------
+@mixin placeholder( $color: $placeholder-color ) {
+	&::-webkit-input-placeholder {
+    color: $color;
+  }
+  &::placeholder {
+    color: $color;
+  }
+}
+
+// dpi
+// -----------------------------------------------------------------------------
+@mixin dpi($dpi) {
+	@media (-webkit-min-device-pixel-ratio: $dpi),(min-device-pixel-ratio: $dpi) {
+		@content;
+	}
+}
+
+// triangle
+// -----------------------------------------------------------------------------
+@mixin triangle($direction, $size, $borderColor ) {
+  content:"";
+  height: 0;
+  width: 0;
+  overflow:hidden;
+  //$size: parseInt($size) * 1px;
+
+  @if $direction == top {
+    border-bottom: $size solid $borderColor;
+    border-left: $size dashed transparent;
+    border-right: $size dashed transparent;
+  }
+  @else if $direction == right {
+    border-left: $size solid $borderColor;
+    border-top: $size dashed transparent;
+    border-bottom: $size dashed transparent;
+  }
+  @else if $direction == bottom {
+    border-top: $size solid $borderColor;
+    border-left: $size dashed transparent;
+    border-right: $size dashed transparent;
+  }
+  @else if $direction == left {
+    border-right: $size solid $borderColor;
+    border-top: $size dashed transparent;
+    border-bottom: $size dashed transparent;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// functions
+// -----------------------------------------------------------------------------
+
+// @desc 去除数据的单位
+@function parseInt($args) {
+  @return $args / ($args * 0 + 1);
+}
+
+// @desc 是否为零
+@function isZero($args) {
+  $number: parseInt($args);
+  $res: 0;
+
+  @if $number != 0 {
+    $res: 1;
+  }
+
+  @return $res;
+}
+
+// @desc px转为rem
+@function px2rem($pixel, $baseFontSize: $base-font-size) {
+  $res: 0;
+
+  @if isZero($pixel) == 1 {
+    $res: parseInt($pixel) / parseInt($baseFontSize) * 1rem;
+  }
+
+  @return $res;
+}
+

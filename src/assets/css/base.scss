@@ -1,0 +1,22 @@
+// common config
+@import './variables';
+
+// all mixins and functions
+@import './mixins';
+
+// animation
+@import './animation';
+
+// normalize
+@import './normalize';
+
+// custom icon
+@import './icon';
+
+// utils
+@import './utils';
+
+
+.demo {
+    @include triangle(top, 5px, #ccc);
+  }
