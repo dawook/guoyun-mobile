@@ -40,6 +40,23 @@
 	}
 }
 
+// media screen
+@mixin max-screen($maxPixel) {
+  @media only screen and (max-width: $maxPixel) {
+    @content;
+  }
+}
+@mixin min-screen($minPixel) {
+  @media only screen and (min-width: $minPixel) {
+    @content;
+  }
+}
+@mixin screen($minPixel,$maxPixel) {
+  @media only screen and (min-width: $minPixel) and (max-width: $maxPixel) {
+    @content;
+  }
+}
+
 // triangle
 // -----------------------------------------------------------------------------
 @mixin triangle($direction, $size, $borderColor ) {
@@ -88,17 +105,6 @@
 
   @if $number != 0 {
     $res: 1;
-  }
-
-  @return $res;
-}
-
-// @desc px转为rem
-@function px2rem($pixel, $baseFontSize: $base-font-size) {
-  $res: 0;
-
-  @if isZero($pixel) == 1 {
-    $res: parseInt($pixel) / parseInt($baseFontSize) * 1rem;
   }
 
   @return $res;
