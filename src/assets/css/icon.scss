@@ -24,6 +24,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-logo {
+  &:before {
+    content: $icon-logo;
+  }
+}
 .icon-alipay {
   &:before {
     content: $icon-alipay;
