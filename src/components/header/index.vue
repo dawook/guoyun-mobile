@@ -54,6 +54,3 @@
   }
 </script>
 
-<style lang="sass">
-  @import "./header.scss";
-</style>

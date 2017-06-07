@@ -16,7 +16,12 @@
 // utils
 @import './utils';
 
+// common
+@import './common';
 
-.demo {
-    @include triangle(top, 5px, #ccc);
-  }
+
+// load components style
+@import './components/header';
+@import './components/carousel';
+@import './components/menu';
+

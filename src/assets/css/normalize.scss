@@ -502,8 +502,8 @@ body {
   width: 100%;
   font-family: $base-font-family;
   line-height: $base-line-height;
-  background-color: $body-background-color;
   
+  background-color: $body-background-color;
   @include setPrefixer((text-size-adjust: none));
   @include setPrefixer((tap-highlight-color: transparent));
 }

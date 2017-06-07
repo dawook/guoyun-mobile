@@ -1,33 +1,39 @@
 <template>
-  <div>
+  <div class='container'>
     <v-header></v-header>
-    <swipe 
-    	v-model="index" 
-    	style="text-align: center; line-height: 80px; height: 100px;"
-    	:pagination='false'>
-		  <swipe-item style="height: 100px;"><img :src="img"></swipe-item>
-		  <swipe-item style="height: 100px;">item2</swipe-item>
-		  <swipe-item style="height: 100px;">item3</swipe-item>
-		</swipe>
+		<v-carousel :items='carouselItems'></v-carousel>
+		<v-menu></v-menu>
   </div>
 </template>
 
 <script>
 import vHeader from '@/components/header/'
-import { Swipe, SwipeItem } from 'c-swipe';
-require('c-swipe/dist/swipe.css');
+import vCarousel from '@/components/carousel/'
+import vMenu from '@/components/menu/'
 
 export default {
    name: 'vHome',
    components: {
     vHeader,
-    Swipe,
-    SwipeItem
+    vCarousel,
+    vMenu
    },
    data() {
    	return {
-   		index: 0,
-   		img: require('@/assets/imgs/swiper_01.png')
+   		carouselItems: [
+   			{
+   				path: '/',
+   				imgurl: require('@/assets/imgs/swiper_01.png')
+   			},
+   			{
+   				path: '/',
+   				imgurl: require('@/assets/imgs/swiper_02.jpg')
+   			},
+   			{
+   				path: '/',
+   				imgurl: require('@/assets/imgs/swiper_03.jpg')
+   			}
+   		]
    	}
    }
 }

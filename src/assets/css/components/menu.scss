@@ -1,0 +1,50 @@
+$miHouse: #78b7ff;
+$miPPP: #ff999e;
+$miSchool: #ffd95e;
+$miStock: #ffa978;
+$miRecharge: #d597ff;
+
+.menu {
+	display: flex;
+	display: box;
+	margin: .375rem 0;
+  padding: .75em .625rem;
+  background-color: #fff;
+
+  justify-content: space-between;
+  box-pack: justify;
+
+	&__item {
+		display: inline-block;
+		flex: 1;
+		text-align: center;
+	}
+
+	&__icon {
+		display: block;
+		margin-bottom: .1rem;
+		font-size: 1.625rem;
+
+		&.project-house {
+			color: $miHouse;
+		}
+		&.fields {
+			color: $miPPP;
+		}
+		&.project-school {
+			color: $miSchool;
+		}
+		&.project-stock-right {
+			color: $miStock;
+		}
+		&.recharge {
+			color: $miRecharge;
+		}
+
+	}
+
+	&__tips {
+		font-size: .675rem;
+		color: #787878;
+	}
+}
