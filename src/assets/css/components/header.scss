@@ -2,7 +2,7 @@
 
 .header {
 	position: relative;
-	padding: .75rem .75rem .625rem;
+	padding: $gutterSpace $gutterSpace .625rem;
 	height: 2.75rem;
 	background-color: #fff;
 	border-bottom: 1px solid #eee;
@@ -18,7 +18,7 @@
 		left: 0;
 		bottom: 0;
 		padding-top: .785rem;
-		padding-left: .75rem;
+		padding-left: $gutterSpace;
 		width: 5.625rem;
 		color: #696969;
 	}
@@ -29,7 +29,7 @@
 		a {
 			padding-left: .65rem;
 			display: inline-block;
-			color: #d61518;
+			color: $mainColor;
 		}
 	}
 

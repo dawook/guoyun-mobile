@@ -1,0 +1,44 @@
+.card {
+	padding: $gutterSpace;
+	margin: $gutterSpace 0;
+	width: 100%;
+	background-color: #fff;
+
+	&__header {
+		position: relative;
+		height: 1.25rem;
+    padding: 0 $gutterSpace;
+    color: gray;
+
+    &:before {
+    	position: absolute;
+    	content: "";
+    	top: 0;
+    	left: 0;
+    	bottom: 0;
+    	width: 2px;
+    	background-color: $mainColor;
+    }
+	}
+
+	&__more {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		color: #ccc;
+		
+		span {
+			position: relative;
+			top: -8px;
+			right: -7px;
+			font-size: .75rem;
+		}
+
+		i {
+			font-size: 1.6rem;
+		}
+	}
+
+
+}

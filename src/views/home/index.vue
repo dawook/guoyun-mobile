@@ -3,6 +3,11 @@
     <v-header></v-header>
 		<v-carousel :items='carouselItems'></v-carousel>
 		<v-menu></v-menu>
+		<v-project-card	title='热门项目'></v-project-card>
+		<v-project-card	title='影视文化'></v-project-card>
+		<v-project-card	title='不良资产'></v-project-card>
+		<v-project-card	title='PPP耕地'></v-project-card>
+		<v-project-card	title='商学院'></v-project-card>
   </div>
 </template>
 
@@ -10,13 +15,15 @@
 import vHeader from '@/components/header/'
 import vCarousel from '@/components/carousel/'
 import vMenu from '@/components/menu/'
+import {vProjectCard} from '@/components/card/index.js'
 
 export default {
    name: 'vHome',
    components: {
     vHeader,
     vCarousel,
-    vMenu
+    vMenu,
+    vProjectCard
    },
    data() {
    	return {
