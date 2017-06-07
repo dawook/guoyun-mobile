@@ -1,0 +1,19 @@
+.project-list {
+	width: 100%;
+
+	&__item {
+		margin-top: .75rem;
+		padding: .5rem;
+		width: 100%;
+		// border-top: 1px solid #ccc;
+	}
+	&__title {
+		color: #666;
+		font-size: .85rem;
+	}
+	&__badge {
+		padding: 2px 5px;
+		font-size: .75rem;
+		border: .5px solid #ccc;
+	}
+}

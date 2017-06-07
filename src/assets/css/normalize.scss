@@ -551,3 +551,10 @@ li {
   background-color: rgba(125, 125, 125, 0.7);
   @include setPrefixer((border-radius: 6px));
 }
+
+p {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+}

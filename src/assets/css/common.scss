@@ -5,3 +5,31 @@
   max-width: 640px;
 }
 
+.b-t-1px {
+	position: relative;
+	&:before {
+		position: absolute;
+		content: "";
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background-color: #ccc;
+	}
+}
+
+@include dpi {
+	.b-t-1px {
+		&::before {
+			transform: scaleY(0.7);
+		}
+	}
+}
+@include dpi(2) {
+	.b-t-1px {
+		&::before {
+			transform: scaleY(0.5);
+		}
+	}
+}
+

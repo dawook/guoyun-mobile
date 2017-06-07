@@ -6,7 +6,10 @@
 				国运产权-GY-001
 				<i class='icon-fire'></i>
 			</p>
-			
+
+			<div :class='detailCls'>
+				
+			</div>
 			
 		</v-touch>
 	</ul>
@@ -20,13 +23,16 @@ export default {
 			return `project-list`
 		},
 		itemCls() {
-			return `project-list__item`
+			return [`project-list__item`,`b-t-1px`]
 		},
 		titleCls() {
 			return `project-list__title`
 		},
 		badgeCls() {
 			return `project-list__badge`
+		},
+		detailCls() {
+			return `project-list__detai;`
 		}
 	}
 }
