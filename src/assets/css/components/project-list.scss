@@ -7,11 +7,26 @@
 		width: 100%;
 	}
 	&__title {
-		color: #666;
-		font-size: .85rem;
+		color: #333;
+		font-size: .9rem;
+		line-height: 1.0;
+		font-weight: normal;
 	}
 	&__badge {
-		padding: 2px 5px;
+		position: relative;
+		margin-right: 5px;
+		padding: 2px 3px;
 		font-size: .75rem;
+		line-height: 1.0;
+		color: $subColor;
+		font-weight: normal;
+
+
+		&:after {
+			border: {
+				color: $subColor;
+			}
+			border-radius: 4px;
+		}
 	}
 }

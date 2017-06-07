@@ -4,13 +4,12 @@
 			<p :class='titleCls'>
 				<span :class='badgeCls'>150天</span>
 				国运产权-GY-001
-				<i class='icon-fire'></i>
 			</p>
 
 			<div :class='detailCls'>
-				
+
 			</div>
-			
+
 		</v-touch>
 	</ul>
 </template>

@@ -69,7 +69,11 @@
 		left: -50%;
 		right: -50%;
 		bottom: -50%;
-		border: 1px solid #ccc;
+		border: {
+			width: 1px;
+			style: solid;
+			color: #ccc;
+		}
 	}
 }
 @include dpi {
