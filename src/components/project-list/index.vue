@@ -2,12 +2,18 @@
 	<ul :class='wrapCls'>
 		<v-touch tag="li" :class='itemCls'>
 			<p :class='titleCls'>
-				<span :class='badgeCls'>150天</span>
 				国运产权-GY-001
 			</p>
 
 			<div :class='detailCls'>
-
+				<div :class='detailItemCls'>
+					<span class='profit'>35.0</span>
+					<p class='tips'>预估年化(%)</p>
+				</div>
+				<div :class='detailItemCls'>
+					1个月|可加入
+					<p class='tips'>项目金额520万元</p>
+				</div>
 			</div>
 
 		</v-touch>
@@ -27,11 +33,11 @@ export default {
 		titleCls() {
 			return `project-list__title`
 		},
-		badgeCls() {
-			return [`project-list__badge`, `border-1px`]
-		},
 		detailCls() {
-			return `project-list__detai;`
+			return `project-list__detail`
+		},
+		detailItemCls() {
+			return `project-list__detail-item`
 		}
 	}
 }
