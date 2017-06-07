@@ -17,7 +17,6 @@
 		background-color: #ccc;
 	}
 }
-
 @include dpi {
 	.b-t-1px {
 		&::before {
@@ -29,6 +28,61 @@
 	.b-t-1px {
 		&::before {
 			transform: scaleY(0.5);
+		}
+	}
+}
+
+.b-b-1px {
+	position: relative;
+	&:after {
+		position: absolute;
+		content: "";
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background-color: #ccc;
+	}
+}
+@include dpi {
+	.b-b-1px {
+		&::after {
+			transform: scaleY(0.7);
+		}
+	}
+}
+@include dpi(2) {
+	.b-b-1px {
+		&::after {
+			transform: scaleY(0.5);
+		}
+	}
+}
+
+.border-1px {
+	position: relative;
+
+	&:after {
+		position: absolute;
+		content: "";
+		top: -50%;
+		left: -50%;
+		right: -50%;
+		bottom: -50%;
+		border: 1px solid #ccc;
+	}
+}
+@include dpi {
+	.border-1px {
+		&::after {
+			transform: scale(0.7);
+		}
+	}
+}
+@include dpi(2) {
+	.border-1px {
+		&::after {
+			transform: scale(0.5);
 		}
 	}
 }

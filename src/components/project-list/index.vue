@@ -29,7 +29,7 @@ export default {
 			return `project-list__title`
 		},
 		badgeCls() {
-			return `project-list__badge`
+			return [`project-list__badge`, `border-1px`]
 		},
 		detailCls() {
 			return `project-list__detai;`
