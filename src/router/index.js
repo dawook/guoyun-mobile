@@ -3,7 +3,8 @@ import Router from 'vue-router'
 
 import Home from '@/views/home/'
 import {
-  notFound
+  NotFound,
+  Login
 } from '@/views/common/'
 
 Vue.use(Router)
@@ -14,7 +15,11 @@ export default new Router({
     name: 'Home',
     component: Home
   }, {
+    path: '/login',
+    name: 'login',
+    component: Login
+  }, {
     path: '*',
-    component: notFound
+    component: NotFound
   }]
 })

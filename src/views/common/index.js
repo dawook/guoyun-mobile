@@ -1,5 +1,7 @@
-import notFound from './src/not-found.vue'
+import NotFound from './src/not-found.vue'
+import Login from './src/login.vue'
 
 export {
-  notFound
+  NotFound,
+  Login
 }
