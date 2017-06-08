@@ -7,8 +7,7 @@
 				<i class="icon-arrow-right"></i>
 			</router-link>
 		</div>
-
-		<v-project-list slot='main'></v-project-list>
+		<v-project-list slot='main' :datas='datas'></v-project-list>
 	</v-card>
 </template>
 
@@ -25,6 +24,9 @@ export default {
 		path: {
 			type: String,
 			default: ''
+		},
+		datas: {
+			type: Array
 		}
 	},
 	computed: {

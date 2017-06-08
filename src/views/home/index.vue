@@ -3,7 +3,7 @@
     <v-header></v-header>
 		<v-carousel :items='carouselItems'></v-carousel>
 		<v-menu></v-menu>
-		<v-project-card	title='热门项目'></v-project-card>
+		<v-project-card	title='热门项目' :datas='hotDatas'></v-project-card>
 		<v-project-card	title='影视文化'></v-project-card>
 		<v-project-card	title='不良资产'></v-project-card>
 		<v-project-card	title='PPP耕地'></v-project-card>
@@ -39,6 +39,11 @@ export default {
    			{
    				path: '/',
    				imgurl: require('@/assets/imgs/swiper_03.jpg')
+   			}
+   		],
+   		hotDatas: [
+   			{
+   				title: ""
    			}
    		]
    	}
