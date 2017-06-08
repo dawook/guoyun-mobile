@@ -22,7 +22,7 @@ export const removeStore = name => {
 // 参数是否在指定数组中
 export const oneOf = (value, validList) => {
 	validList.forEach(item => {
-		if (item === value) {
+		if (item == value) {
 			return true;
 		}
 	});
