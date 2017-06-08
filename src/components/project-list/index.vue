@@ -1,10 +1,13 @@
 <template>
 	<ul :class='wrapCls'>
-		<v-touch 
+		<v-touch
+			v-if='isLoad'
 			tag="li"
 			:class='itemCls'
 			v-for='(item, index) in datas'
-			:key='index'>
+			:key='index'
+			v-on:tap='open(item.id)'>
+
 			<p :class='titleCls' v-text='item.title'></p>
 
 			<div :class='detailCls'>
@@ -30,22 +33,36 @@
 			</div>
 
 		</v-touch>
+		<v-touch 
+			v-else
+			tag='li'
+			:class='failCls'
+			v-on:tap='reload'>
+			<i class="icon-refresh"></i>
+			<p>加载失败，轻触重新加载...</p>
+		</v-touch>
 	</ul>
 </template>
 
 <script>
+import {encrypt} from '@/utils/assist.js'
 export default {
 	name: 'vProjectList',
 	props: {
 		datas: {
 			type: Array
+		},
+		isLoad: {
+			type: Boolean
 		}
 	},
 	data() {
 		return {
-			statusTxt: ['待发售','可加入','收益中','已结算']
+			statusTxt: ['待发售','可加入','收益中','已结算'],
+			pid: null
 		}
 	},
+	
 	computed: {
 		wrapCls() {
 			return `project-list`
@@ -61,6 +78,23 @@ export default {
 		},
 		detailItemCls() {
 			return `project-list__detail-item`
+		},
+		failCls() {
+			return `project-list__fail`
+		}
+	},
+	methods: {
+		open(id) {
+			this.$router.push({
+				path: encrypt('detail'),
+				query: {
+					[encrypt('pid')]: encrypt(id)
+				}
+			});
+		},
+
+		reload() {
+			this.$emit('reload');
 		}
 	}
 }

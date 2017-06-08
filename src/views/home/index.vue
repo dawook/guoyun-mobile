@@ -3,7 +3,9 @@
     <v-header></v-header>
 		<v-carousel :items='carouselItems'></v-carousel>
 		<v-menu></v-menu>
-		<v-project-card	title='热门项目' :datas='hotDatas'></v-project-card>
+		<v-project-card	
+			title='热门项目'
+			:datas='hotDatas'></v-project-card>
 		<v-project-card	title='影视文化'></v-project-card>
 		<v-project-card	title='不良资产'></v-project-card>
 		<v-project-card	title='PPP耕地'></v-project-card>
@@ -43,10 +45,18 @@ export default {
    		],
    		hotDatas: [
    			{
-   				title: ""
+   				id: 20170512,
+   				title: "国运产权-GY-001",
+   				profit: '35.0',
+   				period: 6,
+   				status: 2,
+   				money: 500
    			}
    		]
    	}
+   },
+   methods: {
+
    }
 }
 </script>

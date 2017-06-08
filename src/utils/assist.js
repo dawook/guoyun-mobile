@@ -79,7 +79,33 @@ export const assign = (defs, opts) => {
 	for (let p in defs) {
 		sets[p] = opts[p] ? opts[p] : defs[p]
 	}
-
 	return sets;
+}
 
+// 加密
+export const encrypt = s => {
+	let
+		fnl = "",
+		code = 0;
+	s = '' + s;
+
+	for (let i = 0; i < s.length; i++) {
+		code = s.charCodeAt(i) & 0x7f ^ (8 << 7 - i % 8 | 8 >> i % 8 | 0x80) & 0xff;
+		fnl += code.toString(16);
+	}
+	return fnl;
+}
+
+// 解密
+export const decrypt = s => {
+	let
+		fnl = "",
+		code = 0;
+	s = '' + s;
+
+	for (let i = 0; i < s.length >> 1; i++) {
+		code = new Number("0x" + s.substr(i * 2, 2));
+		fnl += String.fromCharCode((code ^ (8 << 7 - i % 8 | 8 >> i % 8 | 0x80)) & 0x7f);
+	}
+	return fnl;
 }
