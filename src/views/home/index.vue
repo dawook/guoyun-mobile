@@ -10,6 +10,7 @@
 		<v-project-card	title='不良资产'></v-project-card>
 		<v-project-card	title='PPP耕地'></v-project-card>
 		<v-project-card	title='商学院'></v-project-card>
+		<v-footer></v-footer>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import vHeader from '@/components/header/'
 import vCarousel from '@/components/carousel/'
 import vMenu from '@/components/menu/'
 import {vProjectCard} from '@/components/card/index.js'
+import vFooter from '@/components/footer/'
 
 export default {
    name: 'vHome',
@@ -25,7 +27,8 @@ export default {
     vHeader,
     vCarousel,
     vMenu,
-    vProjectCard
+    vProjectCard,
+    vFooter
    },
    data() {
    	return {
