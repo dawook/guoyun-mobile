@@ -50,7 +50,9 @@
       },
       type: {
         type: String,
-        default: 'text',
+        default() {
+          return 'text'
+        },
         validator(val) {
           return oneOf(val, ['text', 'password', 'number', 'textarea']);
         }

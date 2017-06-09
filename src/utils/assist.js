@@ -21,12 +21,11 @@ export const removeStore = name => {
 
 // 参数是否在指定数组中
 export const oneOf = (value, validList) => {
-	validList.forEach(item => {
-		if (item == value) {
+	for (let i = 0, iL = validList.length; i < iL; i++) {
+		if (value == validList[i]) {
 			return true;
 		}
-	});
-
+	}
 	return false;
 }
 
