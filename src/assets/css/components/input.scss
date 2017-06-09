@@ -1,24 +1,24 @@
 // input config
 // -----------------------------------------------------------------------------
 $input-color: #666;
-$input-focus-color: $subColor;
+$input-focus-color: $mainColor;
 $input-border-color: #d7dde4;
-$input-border-radius: 3px;
+$input-border-radius: .25rem;
 $input-size: (
   large: (
     padding: 6px 7px,
-    height: 36px,
-    fontSize: 16px
+    height: 3.75rem,
+    fontSize: .75rem
   ),
   def: (
     padding: 4px 7px,
-    height: 32px,
-    fontSize: 14px
+    height: 2.5rem,
+    fontSize: .75rem
   ),
   small: (
     padding: 1px 7px,
-    height: 24px,
-    fontSize: 12px
+    height: 1.5rem,
+    fontSize: .65rem
   )
 );
 
@@ -30,15 +30,20 @@ $input-size: (
    position: relative;
 }
 
+.input-has-icon {
+  .input {
+    padding-left: 35px;
+  }
+}
+
 .input {
   $def: map-get($input-size, 'def');
 
   position: relative;
   display: inline-block;
   width: 100%;
-  height: parseInt(map-get($def, 'height')) * 1px;
-  line-height: 1.5;
-
+  height: parseInt(map-get($def, 'height')) * 1rem;
+  font-weight: normal;
   border: {
     width: 1px;
     style: solid;
@@ -47,14 +52,14 @@ $input-size: (
 
   padding: map-get($def, 'padding');
 
-  font-size: parseInt(map-get($def, 'fontSize')) * 1px;
+  font-size: map-get($def, 'fontSize');
 
   color: $input-color;
   background-color: rgba($input-border-color, .05);
   background-image: none;
 
   outline: none;
-  @include setPrefixer((border-radius: parseInt($input-border-radius) * 1px));
+  @include setPrefixer((border-radius: parseInt($input-border-radius) * 1rem));
 
   -webkit-transition:
     border .25s ease-in-out,
@@ -64,16 +69,12 @@ $input-size: (
     border .25s ease-in-out,
     box-shadow .25s ease-in-out,
     background .25s ease-in-out;
-
+  background-color: #fff;
 
   &:focus,
   &:hover {
     border-color: $input-focus-color;
-  }
-
-  &:focus {
-    @include setPrefixer((box-shadow: 0 0 0 2px rgba($input-focus-color, .2)));
-    background-color: #fff;
+    color: $input-focus-color;
   }
 
   &-textarea {
@@ -85,12 +86,27 @@ $input-size: (
   @each $k, $v in $input-size {
     @if $k != def {
       &--#{$k} {
-        height: parseInt(map-get($v, 'height')) * 1px;
+        height: parseInt(map-get($v, 'height')) * 1rem;
         padding: map-get($v, 'padding');
-        font-size: parseInt(map-get($v, 'fontSize')) * 1px;
+        font-size: map-get($v, 'fontSize');
       }
     }
   }
+  
+  // icon
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    z-index: 10;
+    @include setPrefixer((transform: translateY(-50%)));
+    @include setPrefixer((transition: all .25s ease-in-out), (webkit));
+
+    &--focus {
+      color: $mainColor;
+    }
+  }
+
 
   // clear
   &__close {
@@ -111,8 +127,8 @@ $input-size: (
 
     cursor: pointer;
     background-color: rgba(#000, .1);
-    @include setPrefixer((border-radius: $size / 2 * 1px), (webkit, moz));
-    @include setPrefixer((transition: all .25s ease-in-out), (webkit, moz));
+    @include setPrefixer((border-radius: $size / 2 * 1px), (webkit));
+    @include setPrefixer((transition: all .25s ease-in-out), (webkit));
 
     &:hover {
       background-color: $input-focus-color;
@@ -130,7 +146,7 @@ $input-size: (
     margin-top: -8px;
     cursor: pointer;
     color: rgba(#000, .2);
-    @include setPrefixer((transition: color .25s ease-in-out), (webkit, moz));
+    @include setPrefixer((transition: color .25s ease-in-out), (webkit));
 
     &:hover {
       color: $input-focus-color;

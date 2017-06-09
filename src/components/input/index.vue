@@ -1,5 +1,5 @@
 <template>
-  <div :class='`${this.perfixCls}input__wrap`'>
+  <div :class='wrapCls'>
     <textarea
       v-if="this.type == 'textarea'"
       ref='input'
@@ -13,6 +13,9 @@
       @input='changeVal'>
     </textarea>
     <template v-else>
+      <i 
+        :class='iconCls'
+        v-if='icon.length'></i>
       <input
         ref='input'
         :class='inputCls'
@@ -22,11 +25,13 @@
         :disabled='disabled'
         :placeholder='placeholder'
         :readonly="readonly"
-        @input='changeVal'>
+        @input='changeVal'
+        @focus='focus'
+        @blur='blur'>
 
       <span
         v-if='this.clear'
-        :class='`${this.perfixCls}input__close`'
+        :class='`input__close`'
         @click.stop='clearVal'>
         &times;
       </span>
@@ -68,7 +73,8 @@
         default: true
       },
       icon: {
-        type: String
+        type: String,
+        default: ''
       },
       name: {
         type: String
@@ -99,23 +105,40 @@
       return {
         val: '',
         showSeePwd: false,
-        seepwd: false
+        seepwd: false,
+        isFocus: false
       }
     },
     computed: {
-
+      wrapCls() {
+        return [
+          `input__wrap`,
+          {
+            [`input-has-icon`]: this.icon.length
+          }
+        ];
+      },
+      iconCls() {
+        return [
+          `input__icon`,
+          `icon-${this.icon}`,
+          {
+            [`input__icon--focus`]: this.isFocus
+          }
+        ];
+      },
       inputCls() {
         let clsList = [
-          `${this.perfixCls}input`
+          `input`
         ];
 
         if (this.type !== 'textarea') {
           clsList.push(
-            this.size ? `${this.perfixCls}input--${this.size}` : ''
+            this.size ? `input--${this.size}` : ''
           );
         } else {
           clsList.push(
-            `${this.perfixCls}input-textarea`
+            `input-textarea`
           );
         }
 
@@ -127,11 +150,11 @@
       },
       seepwdCls() {
         let pwdCls = [
-          `${this.perfixCls}input__seepwd`
+          `input__seepwd`
         ];
 
         pwdCls.push(
-          this.seepwd ? `${this.perfixCls}icon-eye` : `${this.perfixCls}icon-eye-slash`
+          this.seepwd ? `icon-eye-open` : `icon-eye-close`
         );
 
         return pwdCls;
@@ -143,6 +166,12 @@
       }
     },
     methods: {
+      focus() {
+        this.isFocus = true;
+      },
+      blur() {
+        this.isFocus = false;
+      },
       clearVal() {
         this.$refs.input.focus();
         if (this.val == '') return false;
