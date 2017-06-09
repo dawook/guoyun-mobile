@@ -76,22 +76,22 @@ $gutterSpace: .75rem;
 // -----------------------------------------------------------------------------
 $layout-padding-map: (
   none: 0,
-  xxs: 5,
-  xs: 10,
-  sm: 15,
-  md: 20,
-  lg: 30,
-  xl: 40,
-  xxl: 50
+  xxs: .3125,
+  xs: .625,
+  sm: 1,
+  md: 1.25,
+  lg: 1.87,
+  xl: 2.5,
+  xxl: 3.125
 ) !default;
 
 $layout-margin-map: (
   none: 0,
-  xxs: 5,
-  xs: 10,
-  sm: 15,
-  md: 20,
-  lg: 30,
-  xl: 40,
-  xxl: 50
+  xxs: .3125,
+  xs: .625,
+  sm: 1,
+  md: 1.25,
+  lg: 1.87,
+  xl: 2.5,
+  xxl: 3.125
 ) !default;
