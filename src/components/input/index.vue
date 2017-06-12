@@ -4,28 +4,25 @@
       v-if="this.type == 'textarea'"
       ref='input'
       :class='inputCls'
-      :value='val'
       :name='name'
       :disabled='disabled'
       :placeholder='placeholder'
       :readonly="readonly"
       :rows='rows'
-      @input='changeVal'>
+      >
     </textarea>
     <template v-else>
-      <i 
+      <i
         :class='iconCls'
         v-if='icon.length'></i>
       <input
         ref='input'
         :class='inputCls'
         :type= 'this.type'
-        :value='val'
         :name="name"
         :disabled='disabled'
         :placeholder='placeholder'
         :readonly="readonly"
-        @input='changeVal'
         @focus='focus'
         @blur='blur'>
 
@@ -163,7 +160,7 @@
     },
     watch: {
       val: function (v, ov) {
-        this.$emit('change', v);
+        //this.$emit('change', v);
       }
     },
     methods: {
@@ -175,8 +172,9 @@
       },
       clearVal() {
         this.$refs.input.focus();
-        if (this.val == '') return false;
-        this.val='';
+        let val = this.$refs.input.value;
+        if (val == '') return false;
+        this.$refs.input.value='';
       },
       seePassword() {
         this.$refs.input.focus();
@@ -190,7 +188,7 @@
       }
     },
     mounted() {
-      this.val = this.value;
+      //this.val = this.value;
       this.showSeePwd = this.type == 'password';
     }
   }

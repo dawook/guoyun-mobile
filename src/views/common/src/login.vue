@@ -6,17 +6,17 @@
       alt="">
 
     <form class="form__wrap" @submit='submit'>
-      <v-input 
+      <v-input
         icon='user'
         class='m-b--sm'
         v-model='username'
-        @change='(val) => {username=val}'></v-input>
-      <v-input 
-        type='password' 
+        ></v-input>
+      <v-input
+        type='password'
         icon='password'
         class='m-b--sm'
         v-model='password'
-        @change='(val) => {password=val}'></v-input>
+        ></v-input>
       <input type="submit" value='立即登录' class='form__submit'>
       <p class='b-t-1px m-t--md form__line'>
         <span>or</span>
@@ -47,8 +47,8 @@ export default {
   data() {
     return {
       iconUrl: require('@/assets/imgs/icon.png'),
-      username: '',
-      password: ''
+      username: '222',
+      password: '222'
     }
   },
   components: {
