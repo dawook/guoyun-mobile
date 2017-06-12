@@ -1,16 +1,10 @@
 <template>
-	<transition 
-		name='zoom'
-		enter-active-class="zoom-in"
-    leave-active-class="zoom-out"
-	>	
-		<div v-if='status' :class='wrapCls' :key='key' ref='toast'>
-			<div :class='mainCls'>
-				<i v-if='iconClass.length' :class='iconCls'></i>
-				<p :class='msgCls'>{{ msg }}</p>
-			</div>
+	<div :class='wrapCls' :key='key' ref='toast'>
+		<div :class='mainCls'>
+			<i v-if='iconClass.length' :class='iconCls'></i>
+			<p :class='msgCls'>{{ msg }}</p>
 		</div>
-	</transition>
+	</div>
 </template>
 
 <script>
@@ -41,8 +35,7 @@
 		},
 		data() {
 			return {
-				key: (new Date()).getTime(),
-				status: true
+				key: (new Date()).getTime()
 			}
 		},
 		computed: {
@@ -73,18 +66,12 @@
 				];
 			}
 		},
-		methods: {
-
-		},
+		
 		mounted() {
 			let $toast = this.$refs['toast'];
 			if ($toast.classList.contains('toast--center')) {
 				$toast.style.marginTop = `-${$toast.offsetHeight/2}px`
 			}
-
-			setTimeout(function () {
-				this.status = false;
-			}.bind(this), this.duration);
 
 		}
 	}

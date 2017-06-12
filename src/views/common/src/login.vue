@@ -8,7 +8,7 @@
     <form class="form__wrap">
       <v-input icon='user' class='m-b--sm'></v-input>
       <v-input type='password' icon='password' class='m-b--sm'></v-input>
-      <input type="submit" value='立即登录' class='form__submit'>
+      <input type="submit" value='立即登录' class='form__submit' @click.stop='toast'>
       <p class='b-t-1px m-t--md form__line'>
         <span>or</span>
       </p>
@@ -17,13 +17,12 @@
         <router-link to='/forget'>忘记密码</router-link>
       </p>
     </form>
-    <v-toast msg='用户名不能为空' iconClass='icon-choose'></v-toast>
   </div>
 </template>
 
 <script>
 import vInput from '@/components/input/'
-import vToast from '@/components/toast/src/toast'
+import vToast from '@/components/toast/'
 export default {
   name: 'login',
   data() {
@@ -32,8 +31,7 @@ export default {
     }
   },
   components: {
-    vInput,
-    vToast
+    vInput
   },
   computed: {
     wrapCls() {
@@ -41,6 +39,13 @@ export default {
     },
     iconCls() {
       return `login__icon`
+    }
+  },
+  methods: {
+    toast() {
+      this.$toast({
+        msg: 'sdsd'
+      })
     }
   }
 }
