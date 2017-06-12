@@ -88,6 +88,15 @@
   }
 }
 
+// 动画规则设定
+@mixin keyframes($aniamtedName) {
+  @-webkit-keyframes #{$aniamtedName} {
+    @content;
+  }
+  @keyframes #{$aniamtedName} {
+    @content;
+  }
+}
 
 // -----------------------------------------------------------------------------
 // functions

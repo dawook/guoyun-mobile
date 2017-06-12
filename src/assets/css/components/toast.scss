@@ -1,0 +1,50 @@
+// toast config
+// -----------------------------------------------------------------------------
+$toastZIndex: 10000;
+$fixedSpace: 2.75rem;
+
+// toast style
+// -----------------------------------------------------------------------------
+.toast {
+	position: fixed;
+	right: 0;
+	left: 0;
+	z-index: $toastZIndex;
+	text-align: center;
+
+	&--top {
+		top: $fixedSpace;
+	}
+	&--bottom {
+		bottom: $fixedSpace;
+	}
+	&--center {
+		top: 50%;
+	}
+
+	&--has-icon {
+		.toast__content {
+			padding: .75rem;
+			border-radius: .35rem;
+		}
+	}
+
+	&__content {
+		display: inline-block;
+		padding: .35rem .675rem;
+		background-color: rgba(0,0,0,.5);
+		border-radius: .95rem;
+	}
+	
+	&__icon {
+		font-size: 2rem;
+		color: #fff;
+	}
+
+	&__msg {
+		font-size: .75rem;
+		color: #fff;
+		font-weight: normal;
+	}
+}
+

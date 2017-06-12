@@ -47,8 +47,9 @@
 
 <script>
   import {oneOf} from '@/utils/assist.js';
+
   export default {
-    name: 'drInput',
+    name: 'vInput',
     props: {
       customCls: {
         type: String

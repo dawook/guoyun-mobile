@@ -17,15 +17,13 @@
         <router-link to='/forget'>忘记密码</router-link>
       </p>
     </form>
-
-
-
-    
+    <v-toast msg='用户名不能为空' iconClass='icon-choose'></v-toast>
   </div>
 </template>
 
 <script>
 import vInput from '@/components/input/'
+import vToast from '@/components/toast/src/toast'
 export default {
   name: 'login',
   data() {
@@ -34,7 +32,8 @@ export default {
     }
   },
   components: {
-    vInput
+    vInput,
+    vToast
   },
   computed: {
     wrapCls() {
