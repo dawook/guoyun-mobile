@@ -5,14 +5,23 @@
       :class='iconCls'
       alt="">
 
-    <form class="form__wrap">
-      <v-input icon='user' class='m-b--sm'></v-input>
-      <v-input type='password' icon='password' class='m-b--sm'></v-input>
-      <input type="submit" value='立即登录' class='form__submit' @click.stop='toast'>
+    <form class="form__wrap" @submit='submit'>
+      <v-input 
+        icon='user'
+        class='m-b--sm'
+        v-model='username'
+        @change='(val) => {username=val}'></v-input>
+      <v-input 
+        type='password' 
+        icon='password'
+        class='m-b--sm'
+        v-model='password'
+        @change='(val) => {password=val}'></v-input>
+      <input type="submit" value='立即登录' class='form__submit'>
       <p class='b-t-1px m-t--md form__line'>
         <span>or</span>
       </p>
-      <p class='form__tips'>
+      <p class='form__tips' >
         <router-link to='/reg'>立即注册</router-link>
         <router-link to='/forget'>忘记密码</router-link>
       </p>
@@ -22,17 +31,11 @@
 
 <script>
 import vInput from '@/components/input/'
-import vToast from '@/components/toast/'
+import '@/components/toast/'
+import {trim} from '@/utils/assist.js'
+
 export default {
   name: 'login',
-  data() {
-    return {
-      iconUrl: require('@/assets/imgs/icon.png')
-    }
-  },
-  components: {
-    vInput
-  },
   computed: {
     wrapCls() {
       return [`login`,`b-t-1px`]
@@ -41,11 +44,44 @@ export default {
       return `login__icon`
     }
   },
+  data() {
+    return {
+      iconUrl: require('@/assets/imgs/icon.png'),
+      username: '',
+      password: ''
+    }
+  },
+  components: {
+    vInput
+  },
   methods: {
-    toast() {
-      this.$toast({
-        msg: 'sdsd'
-      })
+    validator() {
+      let uname = trim(this.username);
+      let pwd = trim(this.password);
+
+      if (!uname.length) {
+        this.$toast({msg: '用户名不能为空'});
+        return false;
+      }
+      if(!/^[0-9A-Za-z_]{6,15}$/.test(uname)) {
+        this.$toast({msg: '用户名不能包含0-9,a-z,A-z,_之外的字符'});
+        return false;
+      }
+      if (!pwd.length) {
+        this.$toast({msg: '登录密码不能为空'});
+        return false;
+      }
+      if (pwd.length < 6) {
+        this.$toast({msg: '登录密码不能少于6位'});
+        return false;
+      }
+      return true;
+    },
+    submit() {
+      this.validator();
+
+      
+      return false;
     }
   }
 }

@@ -32,7 +32,7 @@ export const oneOf = (value, validList) => {
 
 
 // 清除字符串左右两端空白字符
-export const trim = str => {
+export const trim = (str) => {
 	return str.replace(/(^\s*)|(\s*$)/g, "");
 }
 

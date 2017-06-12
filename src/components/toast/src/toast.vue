@@ -22,7 +22,7 @@
 			},
 			duration: {
 				type: Number,
-				default: 3000
+				default: 3500
 			},
 			msg: {
 				type: String,
