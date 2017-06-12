@@ -1,22 +1,32 @@
-// 存储localStorage
-export const setStore = (name, content) => {
+// 存储localStorage / sessionStorage
+export const setStore = (name, content, isLocal = false) => {
 	if (!name) return;
 	if (typeof content !== 'string') {
 		content = JSON.stringify(content);
 	}
-	window.localStorage.setItem(name, content);
+	if (isLocal) {
+		window.localStorage.setItem(name, content);
+	} else {
+		window.sessionStorage.setItem(name, content);
+	}
 }
 
-// 获取localStorage
-export const getStore = name => {
+// 获取localStorage / sessionStorage
+export const getStore = (name, isLocal = false) => {
 	if (!name) return;
-	return window.localStorage.getItem(name);
+	return isLocal ?
+		window.localStorage.getItem(name) :
+		window.sessionStorage.getItem(name);
 }
 
-// 删除localStorage
-export const removeStore = name => {
+// 删除localStorage / sessionStorage
+export const removeStore = (name, isLocal = false) => {
 	if (!name) return;
-	window.localStorage.removeItem(name);
+	if (isLocal) {
+		window.localStorage.removeItem(name);
+	} else {
+		window.sessionStorage.removeItem(name);
+	}
 }
 
 // 参数是否在指定数组中
