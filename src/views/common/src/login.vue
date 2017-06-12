@@ -80,6 +80,8 @@ export default {
     submit() {
       this.validator();
 
+      this.username = '';
+      this.password = '';
 
       return false;
     }
