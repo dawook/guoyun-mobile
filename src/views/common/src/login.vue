@@ -32,7 +32,7 @@
 <script>
 import vInput from '@/components/input/'
 import '@/components/toast/'
-import {trim} from '@/utils/assist.js'
+import {trim, setStore, getStore} from '@/utils/assist.js'
 
 export default {
   name: 'login',
@@ -80,7 +80,7 @@ export default {
     submit() {
       this.validator();
 
-      
+
       return false;
     }
   }
