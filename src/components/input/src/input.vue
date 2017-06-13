@@ -16,11 +16,9 @@
 			:readonly='readonly'
 			:disabled='disabled'
 			:value='currentValue'
-			@focus='bShowClearIcon = true'
-			@blur='bShowClearIcon = false'
 			@input='handleChange'>
 		
-		
+
 		<!-- clear input -->
 		<span :class='clearInputCls' v-if='getShowClearIcon' @click.stop='clear'></span>
 
@@ -97,7 +95,7 @@ export default {
 	data() {
 		return {
 			currentValue: this.value,
-			bShowClearIcon: false,
+			bShowClearIcon: true,
 			bShowPassword: true,
 			bShowErrorIcon: false,
 			bShowSuccessIcon: false,
@@ -141,12 +139,17 @@ export default {
 		},
 		clearInputCls() {
 			return [
-				`form-group__clear`
+				`form-group__clear`,
+				'icon-close'
 			];
 		},
 		showPasswordCls() {
 			return [
-				`form-group__show-password`
+				`form-group__show-password`,
+				{
+					[`icon-eye-open`]: this.bSeePwd,
+					[`icon-eye-close`]: !this.bSeePwd
+				}
 			];
 		},
 		errorIconCls() {
@@ -158,7 +161,8 @@ export default {
 		successIconCls() {
 			return [
 				`form-group__status`,
-				`form-group__status--success`
+				`form-group__status--success`,
+				`icon-choose`
 			];
 		},
 
@@ -174,7 +178,7 @@ export default {
 
 		// 是否显示password icon
 		getShowPassword() {
-			return this.type === 'password' && this.bShowPassword
+			return (this.type === 'password' && this.bShowPassword) || (this.type !== 'password' && !this.bShowPassword)
 		},
 
 		// 是否显示error icon
@@ -203,6 +207,7 @@ export default {
 			this.currentValue = '';
 		},
 		showPassword() {
+			this.bSeePwd = !this.bSeePwd;
 			this.type = this.bSeePwd ?  'text' : 'password';
 		},
 		handleChange(e) {
