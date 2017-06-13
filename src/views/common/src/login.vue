@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import vInput from '@/components/input/'
+import vInput from '@/components/input/src/input.vue'
 import '@/components/toast/'
 import {trim, setStore, getStore} from '@/utils/assist.js'
 
@@ -64,7 +64,7 @@ export default {
         return false;
       }
       if(!/^[0-9A-Za-z_]{6,15}$/.test(uname)) {
-        this.$toast({msg: '用户名不能包含0-9,a-z,A-z,_之外的字符'});
+        this.$toast({msg: '用户名必须是0-9,a-z,A-z,_的6-15位字符'});
         return false;
       }
       if (!pwd.length) {
@@ -78,10 +78,10 @@ export default {
       return true;
     },
     submit() {
-      this.validator();
-
-      this.username = '';
-      this.password = '';
+      if(this.validator()) {
+        this.username = '';
+        this.password = '';
+      }
 
       return false;
     }
