@@ -7,14 +7,15 @@
 
     <form class="form__wrap" @submit='submit'>
       <v-input
-        icon='user'
+        icon='icon-user'
         class='m-b--sm'
         v-model='username'
         ></v-input>
       <v-input
         type='password'
-        icon='password'
+        icon='icon-password'
         class='m-b--sm'
+        showPasswordIcon
         v-model='password'
         ></v-input>
       <input type="submit" value='立即登录' class='form__submit'>
@@ -32,7 +33,11 @@
 <script>
 import vInput from '@/components/input/src/input.vue'
 import '@/components/toast/'
-import {trim, setStore, getStore} from '@/utils/assist.js'
+import {
+  trim,
+  setStore,
+  encrypt
+} from '@/utils/assist.js'
 
 export default {
   name: 'login',
@@ -55,6 +60,9 @@ export default {
     vInput
   },
   methods: {
+    goBack() {
+      this.$router.back(-1);
+    },
     validator() {
       let uname = trim(this.username);
       let pwd = trim(this.password);
@@ -79,8 +87,13 @@ export default {
     },
     submit() {
       if(this.validator()) {
+        setStore('username', encrypt(this.username), true);
+        setStore('password', encrypt(this.username));
+        
         this.username = '';
         this.password = '';
+
+        this.goBack();
       }
 
       return false;

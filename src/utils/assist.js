@@ -4,10 +4,11 @@ export const setStore = (name, content, isLocal = false) => {
 	if (typeof content !== 'string') {
 		content = JSON.stringify(content);
 	}
+
 	if (isLocal) {
-		window.localStorage.setItem(name, content);
+		localStorage.setItem(name, content);
 	} else {
-		window.sessionStorage.setItem(name, content);
+		sessionStorage.setItem(name, content);
 	}
 }
 
@@ -15,17 +16,17 @@ export const setStore = (name, content, isLocal = false) => {
 export const getStore = (name, isLocal = false) => {
 	if (!name) return;
 	return isLocal ?
-		window.localStorage.getItem(name) :
-		window.sessionStorage.getItem(name);
+		localStorage.getItem(name) :
+		sessionStorage.getItem(name);
 }
 
 // 删除localStorage / sessionStorage
 export const removeStore = (name, isLocal = false) => {
 	if (!name) return;
 	if (isLocal) {
-		window.localStorage.removeItem(name);
+		localStorage.removeItem(name);
 	} else {
-		window.sessionStorage.removeItem(name);
+		sessionStorage.removeItem(name);
 	}
 }
 

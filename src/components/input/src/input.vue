@@ -1,10 +1,8 @@
 <template>
 	<div :class='formGroupCls'>
-		<!-- label -->
-		<span :class='labelCls' v-text='label' v-if='getShowLabel'></span>
 
 		<!-- icon  -->
-		<span :class='iconCls' v-else></span>
+		<span :class='iconCls' v-if='icon'></span>
 
 		<!-- input -->
 		<input
@@ -16,20 +14,20 @@
 			:readonly='readonly'
 			:disabled='disabled'
 			:value='currentValue'
+			@focus='bFocus = true'
+			@blur='bFocus = false'
 			@input='handleChange'>
 		
+	
+		<div :class='tipsCls'>
 
-		<!-- clear input -->
-		<span :class='clearInputCls' v-if='getShowClearIcon' @click.stop='clear'></span>
+			<!-- show password -->
+			<span :class='showPasswordCls' v-if='showPasswordIcon' @click.stop='showPassword'></span>
 
-		<!-- show password -->
-		<span :class='showPasswordCls' v-if='getShowPassword' @click.stop='showPassword'></span>
+			<!-- clear input -->
+			<span :class='clearInputCls' v-if='getShowClearIcon' @click.stop='clear'></span>
 
-		<!-- error icon -->
-		<span :class='errorIconCls' v-if='getShowErrorIcon'></span>
-
-		<!-- success icon -->
-		<span :class='successIconCls' v-if='getShowSuccessIcon'></span>
+		</div>
 
 	</div>
 </template>
@@ -52,25 +50,19 @@ export default {
 			type: String,
 			default: 'off'
 		},
-		label: String,
 		icon: String,
 		customCls: String,
+		border: {
+			type: Boolean,
+			default: true
+		},
 		showClearIcon: {
 			type: Boolean,
 			default: true
 		},
-		showErrorIcon: {
+		showPasswordIcon: {
 			type: Boolean,
-			default: true
-		},
-		showSuccessIcon: {
-			type: Boolean,
-			default: true
-		},
-		regex: String,	// 验证规则
-		required: {
-			type: Boolean,
-			default: true
+			default: false
 		},
 		type: {
 			type: String,
@@ -78,37 +70,18 @@ export default {
 			validator(val) {
 				return oneOf(val, ['text','tel','password','email','number']);
 			}
-		},
-		max: {
-			type: Number,
-			validator(val) {
-				return /^\d*$/.test(val);
-			}
-		},
-		min: {
-			type: Number,
-			validator(val) {
-				return /^\d*$/.test(val);
-			}
 		}
 	},
 	data() {
 		return {
 			currentValue: this.value,
 			bShowClearIcon: true,
-			bShowPassword: true,
-			bShowErrorIcon: false,
-			bShowSuccessIcon: false,
 
 			// 为真 可见 
 			bSeePwd: false,
 
-			// 内置验证规则
-			regObj: {
-				email: '^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$',
-				mobile: '^(86)?1[3,4,5,7,8]\\d{9}$',
-				bankcard: '^\\d{15,19}$'
-			}
+			// 是否获取焦点
+			bFocus: false
 		};
 	},
 	computed: {
@@ -117,13 +90,11 @@ export default {
 			return [
 				`form-group`,
 				{
+					[`form-group--border`]: this.border,
+					[`form-group--line`]: !this.border,
+					[`form-group--active`]: this.bFocus,
 					[`${this.customCls}`]: this.customCls
 				}
-			];
-		},
-		labelCls() {
-			return [
-				`form-group__label`
 			];
 		},
 		iconCls() {
@@ -135,6 +106,11 @@ export default {
 		inputControllerCls() {
 			return [
 				`form-group__input`
+			];
+		},
+		tipsCls() {
+			return [
+				`form-group__tips`
 			];
 		},
 		clearInputCls() {
@@ -152,43 +128,10 @@ export default {
 				}
 			];
 		},
-		errorIconCls() {
-			return [
-				`form-group__status`,
-				`form-group__status--error`
-			];
-		},
-		successIconCls() {
-			return [
-				`form-group__status`,
-				`form-group__status--success`,
-				`icon-choose`
-			];
-		},
-
-		// 判断显示label或者icon
-		getShowLabel() {
-			return !!this.label && !this.iconCls;
-		},
 
 		// 是否显示clear icon
 		getShowClearIcon() {
 			return this.showClearIcon && this.bShowClearIcon
-		},
-
-		// 是否显示password icon
-		getShowPassword() {
-			return (this.type === 'password' && this.bShowPassword) || (this.type !== 'password' && !this.bShowPassword)
-		},
-
-		// 是否显示error icon
-		getShowErrorIcon() {
-			return this.showErrorIcon && this.bShowErrorIcon
-		},
-
-		// 是否显示success icon
-		getShowSuccessIcon() {
-			return this.showSuccessIcon && this.bShowSuccessIcon
 		}
 	},
 	watch: {
@@ -200,10 +143,9 @@ export default {
 		}
 	},
 	methods: {
-		validator() {
-
-		},
+		
 		clear() {
+			if (this.currentValue = '') return;
 			this.currentValue = '';
 		},
 		showPassword() {

@@ -25,32 +25,39 @@
 </template>
 
 <script>
-	import {oneOf} from '@/utils/assist.js';
+import {
+  oneOf,
+  getStore
+} from '@/utils/assist.js';
  
-  export default {
-    name: 'vHeader',
-    props: {
-    	isIndex: {
-    		type: Boolean,
-    		default: true
-    	}
-    },
-    data() {
-    	return {
-    		avtarImg: require('@/assets/imgs/avatar.jpg'),
-    		isLogin: false
-    	}
-    },
-    computed: {
-    	objCls() {
-    		return [
-    			`header`,
-    			{
-    				[`header--index`]: this.isIndex
-    			}
-    		];
-    	}
+export default {
+  name: 'vHeader',
+  props: {
+    isIndex: {
+    	type: Boolean,
+    	default: true
     }
+  },
+  data() {
+    return {
+    	avtarImg: require('@/assets/imgs/avatar.jpg'),
+    	isLogin: false
+    }
+  },
+  computed: {
+    objCls() {
+    	return [
+    		`header`,
+    		{
+    			[`header--index`]: this.isIndex
+    		}
+    	];
+    }
+  },
+  created() {
+    this.isLogin = !!getStore('username');
+
   }
+}
 </script>
 
