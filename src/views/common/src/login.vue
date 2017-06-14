@@ -52,8 +52,8 @@ export default {
   data() {
     return {
       iconUrl: require('@/assets/imgs/icon.png'),
-      username: '222',
-      password: '222'
+      username: '',
+      password: ''
     }
   },
   components: {
@@ -86,15 +86,18 @@ export default {
       return true;
     },
     submit() {
-      if(this.validator()) {
-        setStore('username', encrypt(this.username), true);
-        setStore('password', encrypt(this.username));
+      console.log(this.$router );
+      //if(this.validator()) {
+        // try {
+        //   setStore('username', encrypt(this.username), true);
+        //   setStore('password', encrypt(this.username));
+        // }catch(e) {}
         
-        this.username = '';
-        this.password = '';
+        // this.username = '';
+        // this.password = '';
 
-        this.goBack();
-      }
+      //   this.goBack();
+      // }
 
       return false;
     }
