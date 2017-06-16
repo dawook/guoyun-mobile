@@ -5,7 +5,8 @@ $dwyer-font-path: "../fonts" !default;
 $icon-logo: "\e934";
 $icon-alipay: "\e900";
 $icon-arrow-down: "\e901";
-$icon-arrow-left: "\e902";
+$icon-arrow-left: "\e935";
+$icon-arrow-left-line: "\e902";
 $icon-arrow-right: "\e903";
 $icon-arrow-up: "\e904";
 $icon-bank-gd: "\e905";
@@ -69,6 +70,12 @@ $default-alink-color: #333;
 
 $mainColor: #d61518;
 $subColor: #3599d5;
+$black: #000 !default;
+$grayDarker: #333 !default;
+$grayDark: #999 !default;
+$gray: #ccc !default;
+$grayLight: #f5f5f5 !default;
+$white: #fff !default;
 
 $gutterSpace: .75rem;
 

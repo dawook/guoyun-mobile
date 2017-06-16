@@ -9,7 +9,7 @@
 	}
 	&__title {
 		padding-top: .375rem;
-		color: #333;
+		color: $grayDarker;
 		font-size: .9rem;
 		line-height: 1.0;
 		font-weight: normal;
@@ -76,14 +76,14 @@
 						color: $subColor;
 					}
 					&.status--3 {
-						color: #ccc;
+						color: $gray;
 					}
 					
 				}
 			}
 
 			.tips {
-				color: #999;
+				color: $grayDark;
 				font-size: .75rem;
 			}
 		}
@@ -94,11 +94,11 @@
 		padding: .95rem 0;
 		text-align: center;
 		font-size: 1.5rem;
-		color: #ccc;
+		color: $grayDarker;
 
 		p {
 			font-size: .75rem;
-			color: #999;
+			color: $grayDark;
 		}
 	}
 

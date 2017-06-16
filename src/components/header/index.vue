@@ -5,7 +5,7 @@
 	  		<i class='icon-logo'></i>
 	  	</router-link>
 			<nav class='header__nav'>
-				<router-link :to="{ path: '/' }" v-if='!isLogin'>
+				<router-link :to="{ path: '/login' }" v-if='!isLogin'>
 		  		<i class='icon-user'></i>
 		  	</router-link>
 		  	<router-link :to="{ path: '/' }" v-else>
@@ -18,8 +18,14 @@
 		  		<i class='icon-setting'></i>
 		  	</router-link>
 			</nav>
-
   	</template>
+
+    <template v-else>
+      <div :class='titleCls'>
+        <i :class='backCls' @click.stop='back'></i>
+        <span :class='pageName'>用户注册</span>
+      </div>
+    </template>
   	
   </div>
 </template>
@@ -52,6 +58,28 @@ export default {
     			[`header--index`]: this.isIndex
     		}
     	];
+    },
+
+    backCls() {
+      return [
+        `icon-arrow-left`,
+        `header__back`
+      ];
+    },
+    titleCls() {
+      return [
+        `header__title`
+      ];
+    },
+    pageName() {
+      return [
+        `header__page-name`
+      ];
+    }
+  },
+  methods: {
+    back() {
+      this.$router.back(-1);
     }
   },
   created() {

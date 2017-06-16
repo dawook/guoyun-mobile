@@ -5,7 +5,7 @@
       :class='iconCls'
       alt="">
 
-    <form class="form__wrap" @submit='submit'>
+    <form :class="formCls">
       <v-input
         icon='icon-user'
         class='m-b--sm'
@@ -18,10 +18,17 @@
         showPasswordIcon
         v-model='password'
         ></v-input>
-      <input type="submit" value='立即登录' class='form__submit'>
+      <input 
+        type="button" 
+        value='立即登录' 
+        :class='formBtn'
+        :disabled="disabled"
+        @click.stop='submit'>
+
       <p class='b-t-1px m-t--md form__line'>
         <span>or</span>
       </p>
+
       <p class='form__tips' >
         <router-link to='/reg'>立即注册</router-link>
         <router-link to='/forget'>忘记密码</router-link>
@@ -31,7 +38,7 @@
 </template>
 
 <script>
-import vInput from '@/components/input/src/input.vue'
+import vInput from '@/components/input/'
 import '@/components/toast/'
 import {
   trim,
@@ -47,17 +54,39 @@ export default {
     },
     iconCls() {
       return `login__icon`
+    },
+    formCls() {
+      return [
+        `form__wrap`
+      ];
+    },
+    formBtn() {
+      return [
+        `form__submit`,
+        {
+          [`form__submit--disabled`]: this.disabled
+        }
+      ];
     }
   },
   data() {
     return {
       iconUrl: require('@/assets/imgs/icon.png'),
       username: '',
-      password: ''
+      password: '',
+      disabled: true
     }
   },
   components: {
     vInput
+  },
+  watch: {
+    username(val) {
+      this.disabled = !(val && val.length);
+    },
+    password(val) {
+      this.disabled = !(val && val.length);
+    }
   },
   methods: {
     goBack() {
@@ -86,18 +115,18 @@ export default {
       return true;
     },
     submit() {
-      console.log(this.$router );
-      //if(this.validator()) {
-        // try {
-        //   setStore('username', encrypt(this.username), true);
-        //   setStore('password', encrypt(this.username));
-        // }catch(e) {}
-        
-        // this.username = '';
-        // this.password = '';
 
-      //   this.goBack();
-      // }
+      if(this.validator()) {
+        try {
+          setStore('username', encrypt(this.username));
+          setStore('password', encrypt(this.username));
+        }catch(e) {}
+        
+        this.username = '';
+        this.password = '';
+
+        this.goBack();
+      }
 
       return false;
     }

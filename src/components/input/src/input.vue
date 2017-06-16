@@ -27,6 +27,9 @@
 			<!-- clear input -->
 			<span :class='clearInputCls' v-if='getShowClearIcon' @click.stop='clear'></span>
 
+			<!-- get code buttun -->
+			<span :class='getCodeBtnCls' v-if='getCode' @click.stop='handleGetCode'>{{btnCodeTxt}}</span>
+
 		</div>
 
 	</div>
@@ -46,6 +49,14 @@ export default {
 		placeholder: String,
 		readonly: Boolean,
 		disabled: Boolean,
+		getCode: {
+			type: Boolean,
+			default: false
+		},
+		countDown: {
+			type: Number,
+			default: 120
+		},
 		autocomplete: {
 			type: String,
 			default: 'off'
@@ -81,7 +92,11 @@ export default {
 			bSeePwd: false,
 
 			// 是否获取焦点
-			bFocus: false
+			bFocus: false,
+
+			bCountDown: false,
+			btnCodeTxt: '获取验证码',
+			iCountDown: this.countDown
 		};
 	},
 	computed: {
@@ -129,10 +144,21 @@ export default {
 			];
 		},
 
+		// 是否显示get code 按钮
+		getCodeBtnCls() {
+			return [
+				`form-group__btn-code`,
+				{
+					[`form-group__btn-code--disabled`]: this.bCountDown
+				}
+			];
+		},
+
 		// 是否显示clear icon
 		getShowClearIcon() {
 			return this.showClearIcon && this.bShowClearIcon
 		}
+
 	},
 	watch: {
 		value(val) {
@@ -156,6 +182,23 @@ export default {
 			let val = trim(e.target.value);
 			this.currentValue = val;
 			e.target.value = this.currentValue;
+		},
+		handleGetCode() {
+			if (this.bCountDown) return false;
+
+			this.bCountDown = true;
+			this.iCountDown--
+			
+			var timer = setInterval(function () {
+				if (this.iCountDown > 0) {
+					this.btnCodeTxt = `${this.iCountDown--}s后重新获取`;
+				} else {
+					clearInterval(timer);
+					this.bCountDown = false;
+					this.btnCodeTxt = '获取验证码';
+				}
+			}.bind(this), 1000)
+
 		}
 	}
 }

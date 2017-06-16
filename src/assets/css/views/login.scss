@@ -34,9 +34,13 @@ $login-border-radius: .25rem;
     border: none;
     outline: none;
     background-color: $mainColor;
-    color: #fff;
+    color: $white;
 
     @include setPrefixer((border-radius: $login-border-radius));
+
+    &--disabled {
+      opacity: .5;
+    }
   }
 
 
@@ -54,7 +58,7 @@ $login-border-radius: .25rem;
 
       text-align: center;
       line-height: 16px;
-      color: #ccc;
+      color: $gray;
       font-size: .65rem;
       font-family: $codeFontFamily;
 
@@ -70,7 +74,7 @@ $login-border-radius: .25rem;
     a {
       display: block;
       float: left;
-      color: #999;
+      color: $grayDark;
 
       &:last-child {
         float: right;

@@ -39,6 +39,12 @@
     content: $icon-arrow-down;
   }
 }
+.icon-arrow-left-line {
+  &:before {
+    content: $icon-arrow-left-line;
+  }
+}
+
 .icon-arrow-left {
   &:before {
     content: $icon-arrow-left;
