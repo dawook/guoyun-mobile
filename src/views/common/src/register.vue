@@ -142,6 +142,8 @@ export default {
 
       if(this.validator()) {
         
+        // 注册操作
+        // code 
         
         this.username = '';
         this.password = '';
