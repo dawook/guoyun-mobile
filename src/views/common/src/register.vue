@@ -34,6 +34,10 @@
         getCode
         v-model='code'
         ></v-input>
+      
+      <p class='form__tips m-t--xxs'>
+        <input type="checkbox" >我已阅读并遵守《服务协议》
+      </p>
 
       <v-button
 				btnType='button'
@@ -43,6 +47,10 @@
 				:disabled="disabled"
 				@click.native='submit'
       	></v-button>
+
+      <p class='form__tips m-t--md' >
+        <router-link to='/login'>已有账号，立即登录</router-link>
+      </p>
 
     </form>
 

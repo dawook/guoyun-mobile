@@ -9,6 +9,7 @@
       <v-input
         icon='icon-user'
         class='m-b--sm'
+
         v-model='username'
         ></v-input>
       <v-input
@@ -18,6 +19,10 @@
         showPasswordIcon
         v-model='password'
         ></v-input>
+      
+      <p class='form__tips m-t--xxs'>
+        <input type="checkbox" >记住我
+      </p>
 
       <v-button 
         value='立即登录' 

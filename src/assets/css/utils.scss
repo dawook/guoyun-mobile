@@ -10,7 +10,7 @@
     @if $v == 0 {
       padding: 0 !important;
     } @else {
-      padding: parseInt($v) * 1rem;
+      padding: parseInt($v) * 1rem!important;
     }
 
   }
@@ -22,7 +22,7 @@
     @if $v == 0 {
       padding-top: 0 !important;
     } @else {
-      padding-top: parseInt($v) * 1rem;
+      padding-top: parseInt($v) * 1rem!important;
     }
   }
 }
@@ -33,7 +33,7 @@
     @if $v == 0 {
       padding-right: 0 !important;
     } @else {
-      padding-right: parseInt($v) * 1rem;
+      padding-right: parseInt($v) * 1rem!important;
     }
   }
 }
@@ -44,7 +44,7 @@
     @if $v == 0 {
       padding-bottom: 0 !important;
     } @else {
-      padding-bottom: parseInt($v) * 1rem;
+      padding-bottom: parseInt($v) * 1rem!important;
     }
   }
 }
@@ -55,7 +55,7 @@
     @if $v == 0 {
       padding-left: 0 !important;
     } @else {
-      padding-left: parseInt($v) * 1rem;
+      padding-left: parseInt($v) * 1rem!important;
     }
   }
 }
@@ -67,7 +67,7 @@
     @if $v == 0 {
       margin: 0 !important;
     } @else {
-      margin: parseInt($v) * 1rem;
+      margin: parseInt($v) * 1rem!important;
     }
 
   }
@@ -79,7 +79,7 @@
     @if $v == 0 {
       margin-top: 0 !important;
     } @else {
-      margin-top: parseInt($v) * 1rem;
+      margin-top: parseInt($v) * 1rem!important;
     }
   }
 }
@@ -90,7 +90,7 @@
     @if $v == 0 {
       margin-right: 0 !important;
     } @else {
-      margin-right: parseInt($v) * 1rem;
+      margin-right: parseInt($v) * 1rem!important;
     }
   }
 }
@@ -101,7 +101,7 @@
     @if $v == 0 {
       margin-bottom: 0 !important;
     } @else {
-      margin-bottom: parseInt($v) * 1rem;
+      margin-bottom: parseInt($v) * 1rem!important;
     }
   }
 }
@@ -112,7 +112,7 @@
     @if $v == 0 {
       margin-left: 0 !important;
     } @else {
-      margin-left: parseInt($v) * 1rem;
+      margin-left: parseInt($v) * 1rem!important;
     }
   }
 }
