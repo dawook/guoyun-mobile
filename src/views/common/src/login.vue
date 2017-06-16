@@ -18,12 +18,14 @@
         showPasswordIcon
         v-model='password'
         ></v-input>
-      <input 
-        type="button" 
+
+      <v-button 
         value='立即登录' 
-        :class='formBtn'
-        :disabled="disabled"
-        @click.stop='submit'>
+        type='danger' 
+        block
+        btnType='button'
+        :disabled='disabled' 
+        @click.native='submit'></v-button>
 
       <p class='b-t-1px m-t--md form__line'>
         <span>or</span>
@@ -39,7 +41,9 @@
 
 <script>
 import vInput from '@/components/input/'
+import vButton from '@/components/button/'
 import '@/components/toast/'
+
 import {
   trim,
   setStore,
@@ -78,7 +82,8 @@ export default {
     }
   },
   components: {
-    vInput
+    vInput,
+    vButton
   },
   watch: {
     username(val) {

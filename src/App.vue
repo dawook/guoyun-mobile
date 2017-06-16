@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  	<transition :name="transitionName">
+  	<transition name="outLeftInRight">
     	<router-view></router-view>
     </transition>
   </div>
@@ -8,39 +8,22 @@
 
 <script>
 export default {
-  name: 'app',
-  data () {
-    return {
-      transitionName: 'slide-left'
-    }
-  },
-  // dynamically set transition based on route change
-  watch: {
-    '$router' (to, from) {
-      const toDepth = to.path.split('/').length
-      const fromDepth = from.path.split('/').length
-      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-    }
-	}
+  name: 'app'
 }
 </script>
 
 <style scoped>
-.slide-left-enter,
-.slide-right-leave-active,
-.slide-left-leave-active,
-.slide-right-enter {
-	transition: all .3s ease-in-out;
+.outLeftInRight-enter-active,
+.outLeftInRight-leave-active {
+	transition: all .1s ease;
 }
 
-.slide-left-enter, .slide-right-leave-active {
+.outLeftInRight-enter {
   opacity: 0;
-  -webkit-transform: translate(100%, 0);
-  transform: translate(100%, 0);
+  transform: translateY(50%);
 }
-.slide-left-leave-active, .slide-right-enter {
+.outLeftInRight-leave {
   opacity: 0;
-  -webkit-transform: translate(-100%, 0);
-  transform: translate(-100%, 0);
+  transform: translateY(-20%);
 }
 </style>

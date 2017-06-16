@@ -23,7 +23,9 @@
     <template v-else>
       <div :class='titleCls'>
         <i :class='backCls' @click.stop='back'></i>
-        <span :class='pageName'>用户注册</span>
+        <span :class='pageName'>
+          <slot></slot>
+        </span>
       </div>
     </template>
   	
