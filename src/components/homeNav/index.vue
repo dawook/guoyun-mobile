@@ -73,6 +73,18 @@ export default {
 	.nav__item:nth-child(1) .nav__icon {
 		color: red;
 	}
+	.nav__item:nth-child(2) .nav__icon {
+		color: red;
+	}
+	.nav__item:nth-child(3) .nav__icon {
+		color: red;
+	}
+	.nav__item:nth-child(4) .nav__icon {
+		color: red;
+	}
+	.nav__item:nth-child(5) .nav__icon {
+		color: red;
+	}
 	.nav__icon {
 		font-size: .6rem;
 	}
