@@ -78,7 +78,7 @@ export default {
 	}
 	.nav__tips {
 		padding-top: 5px;
-		/*font-weight: bold;*/
+		font-size: .2rem;
 		color: #666;
 	}
 </style>
