@@ -1,6 +1,6 @@
 <template>
 	<ul class="nav">
-		<li class="nav__item" 
+		<li class="nav__item"
 			v-for='(item, index) in nav'
 			:key='index'>
 			<router-link :to='item.link'>
@@ -11,7 +11,7 @@
 				<p class="nav__tips" v-text='item.title'></p>
 			</router-link>
 		</li>
-		
+
 	</ul>
 </template>
 
@@ -71,19 +71,19 @@ export default {
 		width: 100%;
 	}
 	.nav__item:nth-child(1) .nav__icon {
-		color: #fd7d36;
+		color: #9c8ef4;
 	}
 	.nav__item:nth-child(2) .nav__icon {
-		color: red;
+		color: #4ccbb5;
 	}
 	.nav__item:nth-child(3) .nav__icon {
-		color: red;
+		color: #FECC65;
 	}
 	.nav__item:nth-child(4) .nav__icon {
-		color: red;
+		color: #fd7d36;
 	}
 	.nav__item:nth-child(5) .nav__icon {
-		color: red;
+		color: #7ECF94;
 	}
 	.nav__icon {
 		font-size: .6rem;
