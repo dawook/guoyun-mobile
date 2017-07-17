@@ -6,7 +6,6 @@
 			<router-link :to='item.link'>
 				<i :class="[
 					'nav__icon',
-					'nav__icon--' + item.icon,
 					'dy-icon-project-' + item.icon
 				]"></i>
 				<p class="nav__tips" v-text='item.title'></p>
@@ -70,6 +69,9 @@ export default {
 	.nav__item a {
 		display: block;
 		width: 100%;
+	}
+	.nav__item:nth-child(1) .nav__icon {
+		color: red;
 	}
 	.nav__icon {
 		font-size: .6rem;
