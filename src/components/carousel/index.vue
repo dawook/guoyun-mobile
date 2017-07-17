@@ -1,53 +1,43 @@
 <template>
-	<div :class='wrapCls'>
-		<swipe 
-    	v-model="current" 
-    	class='swiper__wrap'
-    	:pagination='false'>
-
-		  <swipe-item 
-		  	class='swiper__item' 
-		  	v-for='(item, index) in items' 
-		  	:key='index'>
-		  	<router-link :to='item.path'>
-		  		<img :src="item.imgurl" class='swiper__image'>
-		  	</router-link>
-		  </swipe-item>
-		  
-		</swipe>
+	<div class="carousel">
+		<yd-slider autoplay="5000" >
+      <yd-slider-item 
+      	v-for='(item, index) in slider' 
+      	:key='index'>
+      	<img :src="item.apppic" @click='redirect(item.summary)'>
+      </yd-slider-item>
+    </yd-slider>
 	</div>
 </template>
 
 <script>
-	import { Swipe, SwipeItem } from 'c-swipe';
-	require('c-swipe/dist/swipe.css');
-
-	export default {
-		name: 'vCarousel',
-		props: {
-			items: {
-				type: Array
-			},
-			currentIndex: {
-				type: Number,
-				default: 0
-			},
-			wrapCls: {
-				type: String,
-				default: 'swiper__container'
-			}
-		},
-		data() {
-			return {
-				current: 0
-			}
-		},
-		components: {
-			Swipe,
-			SwipeItem
-		},
-		mounted() {
-			this.current = this.currentIndex >= this.items.length ? this.items.length : this.currentIndex;
+export default {
+	name: 'Carousel',
+	data() {
+		return {
+			slider: []
 		}
+	},
+	methods: {
+		redirect(id) {
+			this.$router.push({ path: 'notice', query: { noticeId: id }})
+		}
+	},
+	created() {
+		this.$http.get(this.HOST + 'api.php?action=slider').then(response => {
+			this.slider = response.data.data;
+		})
 	}
+}
 </script>
+
+<style scoped>
+	.carousel {
+		padding: 0 .25rem;
+		width: 100%;
+		overflow: hidden;
+	}
+	.slider-item img {
+		height: 120px;
+	}
+</style>

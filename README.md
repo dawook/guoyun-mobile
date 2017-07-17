@@ -1,6 +1,6 @@
 # guoyun-mobile
 
-> A mobile website of guoyun 
+> A Vue.js project
 
 ## Build Setup
 
