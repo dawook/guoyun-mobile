@@ -1,8 +1,8 @@
 <template>
 	<div class="carousel">
 		<yd-slider autoplay="5000" >
-      <yd-slider-item 
-      	v-for='(item, index) in slider' 
+      <yd-slider-item
+      	v-for='(item, index) in slider'
       	:key='index'>
       	<img :src="item.apppic" @click='redirect(item.summary)'>
       </yd-slider-item>
@@ -37,7 +37,15 @@ export default {
 		width: 100%;
 		overflow: hidden;
 	}
-	.slider-item img {
-		height: 120px;
+
+	@media only screen and (min-width: 640px){
+    .slider-item img {
+			height: 220px;
+		}
+	}
+	@media only screen and (min-width: 960px){
+    .slider-item img {
+			height: 330px;
+		}
 	}
 </style>
