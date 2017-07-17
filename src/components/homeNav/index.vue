@@ -71,7 +71,7 @@ export default {
 		width: 100%;
 	}
 	.nav__item:nth-child(1) .nav__icon {
-		color: red;
+		color: #fd7d36;
 	}
 	.nav__item:nth-child(2) .nav__icon {
 		color: red;
