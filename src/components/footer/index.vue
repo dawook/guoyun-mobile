@@ -1,5 +1,5 @@
 <template>
-  <footer class='footer scale-1px top'>
+  <footer class='footer'>
     <div class="footer__main">
       <div class="footer__nav">
         <router-link to='/register'>注册</router-link>

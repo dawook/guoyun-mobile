@@ -4,7 +4,9 @@
       <yd-slider-item
       	v-for='(item, index) in slider'
       	:key='index'>
-      	<img :src="item.apppic" @click='redirect(item.summary)'>
+      	<router-link :to="'/notice/' + item.summary">
+      		<img :src="item.apppic">
+      	</router-link>
       </yd-slider-item>
     </yd-slider>
 	</div>
@@ -16,11 +18,6 @@ export default {
 	data() {
 		return {
 			slider: []
-		}
-	},
-	methods: {
-		redirect(id) {
-			this.$router.push({ path: 'notice', query: { noticeId: id }})
 		}
 	},
 	created() {
@@ -37,15 +34,17 @@ export default {
 		width: 100%;
 		overflow: hidden;
 	}
-
-	@media only screen and (min-width: 640px){
+	.slider-item img {
+		height: 2.1818rem;
+	}
+	@media only screen and (min-width: 768px){
     .slider-item img {
-			height: 220px;
+			height: 3.928rem;
 		}
 	}
-	@media only screen and (min-width: 960px){
+	@media only screen and (min-width: 768px){
     .slider-item img {
-			height: 330px;
+			height: 5.714rem;
 		}
 	}
 </style>

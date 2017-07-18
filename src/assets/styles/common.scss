@@ -15,7 +15,8 @@ body {
   content: '';
   position: absolute;
   background: #ccc;
-  width: 100%;
+  left: 0;
+  right: 0;
   height: 1px;
   transform-origin: 0 0;
 }
@@ -26,7 +27,6 @@ body {
   width: 1px;
   top: 0;
   bottom: 0;
-  transform-origin: 0 0;
 }
 
 .scale-1px.top:after{
