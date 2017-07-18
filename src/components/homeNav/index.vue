@@ -3,7 +3,7 @@
 		<li class="nav__item"
 			v-for='(item, index) in nav'
 			:key='index'>
-			<router-link :to='item.link'>
+			<router-link :to="{name: item.path, params: {type: item.type}}">
 				<i :class="[
 					'nav__icon',
 					'dy-icon-project-' + item.icon
@@ -23,27 +23,32 @@ export default {
 			nav: [
 				{
 					icon: 'film',
-					link: '/film',
+					path: 'project',
+					type: 'film',
 					title: "影视文化"
 				},
 				{
 					icon: 'pvp',
-					link: '/pvp',
+					path: 'project',
+					type: 'pvp',
 					title: "光伏惠民"
 				},
 				{
 					icon: 'ppp',
-					link: '/ppp',
+					path: 'project',
+					type: 'ppp',
 					title: "耕地补充"
 				},
 				{
 					icon: 'school',
-					link: '/school',
+					path: 'school',
+					type: 'school',
 					title: "商学院"
 				},
 				{
 					icon: 'house',
-					link: '/house',
+					path: 'project',
+					type: 'house',
 					title: "房产"
 				}
 			]

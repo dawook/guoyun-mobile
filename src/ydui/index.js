@@ -38,6 +38,9 @@ import {
 	FlexBoxItem
 } from 'vue-ydui/dist/lib.rem/flexbox';
 
+import {
+	InfiniteScroll
+} from 'vue-ydui/dist/lib.rem/infinitescroll';
 
 
 Vue.component(Button.name, Button);
@@ -54,6 +57,7 @@ Vue.component(RollNotice.name, RollNotice);
 Vue.component(RollNoticeItem.name, RollNoticeItem);
 Vue.component(FlexBox.name, FlexBox);
 Vue.component(FlexBoxItem.name, FlexBoxItem);
+Vue.component(InfiniteScroll.name, InfiniteScroll);
 
 // 加载基础样式
 import 'vue-ydui/dist/ydui.base.css';
