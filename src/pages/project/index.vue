@@ -6,13 +6,15 @@
       </router-link>
     </yd-navbar>
 
-    <yd-infinitescroll :on-infinite="loadList" ref="infiniteScroll">
+    <yd-infinitescroll :on-infinite="load" ref="infiniteScroll">
+      
+      <v-list :datas="listData" slot="list"></v-list>
 
       <!-- 数据全部加载完毕显示 -->
-      <span slot="doneTip">到底了，别扯了</span>
+      <span slot="doneTip" class='dont-tips'>到底了，别扯了</span>
 
       <!-- 加载中提示 -->
-      <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
+      <img slot="loadingTip" class="loading" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
 
     </yd-infinitescroll>
 
@@ -20,18 +22,49 @@
 </template>
 
 <script>
+import vList from '@/components/projectList' 
+
 export default {
   name: 'projectPage',
+  components: {
+    vList
+  },
   data() {
     return {
       type: '',
       ipage: 1,
-      title: ''
+      title: '',
+      totalPage: 0,
+      listData: []
     }
   },
   methods: {
-    loadList() {
+    load() {
+      this.$http.get(`${this.HOST}/api.php?action=invest`, {
+        params: {
+          type: this.type,
+          p: this.ipage
+        }
+      }).then(response => {
+        let data = response.data.data;
+        this.totalPage = data.total_page;
 
+        for (let i = 0, iL = data.list.length; i < iL; i++) {
+          this.listData.push(data.list[i])
+        }
+
+        if (this.ipage >= this.totalPage) {
+          /* 所有数据加载完毕 */
+          this.$refs.infiniteScroll.$emit('ydui.infinitescroll.loadedDone');
+          return;
+        }
+
+        /* 单次请求数据完毕 */
+        this.$refs.infiniteScroll.$emit('ydui.infinitescroll.finishLoad');
+
+        this.ipage++;
+
+      })
     }
   },
   created() {
@@ -60,6 +93,46 @@ export default {
     this.type = mapType[key].id;
     this.title = mapType[key].title;
 
+  },
+
+  mounted() {
+    this.load();
   }
 }
 </script>
+
+<style scoped>
+  .dont-tips {
+    position: relative;
+    padding: .15rem 0;
+    display: inline-block;
+    width: 100%;
+    font-size: .125rem;
+    color: #ccc;
+    text-align: center;
+  }
+  .dont-tips:before,
+  .dont-tips:after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    top: 50%;
+    width: 35%;
+    height: 1px;
+    background-color: #eee;
+  }
+  .dont-tips:before {
+    left: .125rem;
+  }
+  .dont-tips:after {
+    right: .125rem;
+  }
+
+  .loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -32px;
+    margin-left: -32px;
+  }
+</style>

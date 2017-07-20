@@ -1,6 +1,6 @@
 <template>
 	<div class="project">
-		<div class="project__title">
+		<div class="project__title" v-if='title'>
 			<i :class="iconCls" v-if='icon'></i>
 			<span v-text='title'></span>
 			<span class="tips" v-text='subTitle' v-if='subTitle'></span>
