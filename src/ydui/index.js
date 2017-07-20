@@ -42,6 +42,11 @@ import {
 	InfiniteScroll
 } from 'vue-ydui/dist/lib.rem/infinitescroll';
 
+import {
+	Tab,
+	TabPanel
+} from 'vue-ydui/dist/lib.rem/tab';
+
 
 Vue.component(Button.name, Button);
 Vue.component(ButtonGroup.name, ButtonGroup);
@@ -58,6 +63,8 @@ Vue.component(RollNoticeItem.name, RollNoticeItem);
 Vue.component(FlexBox.name, FlexBox);
 Vue.component(FlexBoxItem.name, FlexBoxItem);
 Vue.component(InfiniteScroll.name, InfiniteScroll);
+Vue.component(Tab.name, Tab);
+Vue.component(TabPanel.name, TabPanel);
 
 // 加载基础样式
 import 'vue-ydui/dist/ydui.base.css';

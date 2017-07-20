@@ -1,9 +1,7 @@
 <template>
   <div class="m-home">
-    <yd-navbar :title='title'>
-      <router-link to="/" slot="left">
-        <yd-navbar-back-icon>返回</yd-navbar-back-icon>
-      </router-link>
+    <yd-navbar :title='title' >
+      <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
     </yd-navbar>
 
     <yd-infinitescroll :on-infinite="load" ref="infiniteScroll">

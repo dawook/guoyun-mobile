@@ -1,9 +1,7 @@
 <template>
   <div class="m-home">
     <yd-navbar title='商学院'>
-      <router-link to="/" slot="left">
-        <yd-navbar-back-icon>返回</yd-navbar-back-icon>
-      </router-link>
+      <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
     </yd-navbar>
     
     <div class="school__banner">

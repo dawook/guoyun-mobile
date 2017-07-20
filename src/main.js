@@ -4,6 +4,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import App from './App'
 import router from './router'
+import './directive/index.js'
 
 import './ydui'
 import '@/assets/styles/base.scss'

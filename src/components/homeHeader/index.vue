@@ -12,7 +12,7 @@
 			<router-link to='/login' v-else>
 				<i class="dy-icon-user"></i>
 			</router-link>
-			<router-link to='/notice'>
+			<router-link to='/news'>
 				<i class="dy-icon-notice-circle"></i>
 			</router-link>
 		</div>

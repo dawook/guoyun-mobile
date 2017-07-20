@@ -16,5 +16,9 @@ export default new Router({
 		path: '/school',
 		name: 'school',
 		component: resolve => require(['@/pages/project/school.vue'], resolve)
+	}, {
+		path: '/news',
+		name: 'news',
+		component: resolve => require(['@/pages/news'], resolve)
 	}]
 })
