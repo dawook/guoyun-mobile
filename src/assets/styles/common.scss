@@ -81,3 +81,61 @@ body {
   }
 }
 
+/* Tab 切换透明背景  */
+.tab-without-background .tab-nav-item,
+.tab-without-background .tab-nav-item.tab-active,
+.tab-without-background .tab-nav-item.tab-active:active {
+  background-color: transparent !important;
+}
+.tab-without-background .tab-nav-item.tab-active:before,
+.tab-without-background .tab-nav:after {
+  display: none;
+}
+.tab-without-background .tab-nav-item {
+  line-height: 1rem;
+}
+
+/* list 没有图片 */
+.list-theme4.without-img .list-item .list-img {
+  display: none;
+}
+
+/* 滚动加载 样式 */
+.dont-tips {
+  position: relative;
+  padding: .15rem 0;
+  display: inline-block;
+  width: 100%;
+  font-size: .125rem;
+  color: #ccc;
+  text-align: center;
+}
+.dont-tips:before,
+.dont-tips:after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background-color: #eee;
+}
+.dont-tips:before {
+  left: .125rem;
+}
+.dont-tips:after {
+  right: .125rem;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -32px;
+  margin-left: -32px;
+}
+
+// 文章详情页
+.article__content img {
+  max-width: 100%;
+}

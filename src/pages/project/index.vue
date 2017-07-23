@@ -5,7 +5,7 @@
     </yd-navbar>
 
     <yd-infinitescroll :on-infinite="load" ref="infiniteScroll">
-      
+
       <v-list :datas="listData" slot="list"></v-list>
 
       <!-- 数据全部加载完毕显示 -->
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import vList from '@/components/projectList' 
+import vList from '@/components/projectList'
 
 export default {
   name: 'projectPage',
@@ -98,39 +98,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .dont-tips {
-    position: relative;
-    padding: .15rem 0;
-    display: inline-block;
-    width: 100%;
-    font-size: .125rem;
-    color: #ccc;
-    text-align: center;
-  }
-  .dont-tips:before,
-  .dont-tips:after {
-    position: absolute;
-    z-index: -1;
-    content: "";
-    top: 50%;
-    width: 35%;
-    height: 1px;
-    background-color: #eee;
-  }
-  .dont-tips:before {
-    left: .125rem;
-  }
-  .dont-tips:after {
-    right: .125rem;
-  }
-
-  .loading {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -32px;
-    margin-left: -32px;
-  }
-</style>

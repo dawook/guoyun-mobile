@@ -47,6 +47,17 @@ import {
 	TabPanel
 } from 'vue-ydui/dist/lib.rem/tab';
 
+import {
+	ListTheme,
+	ListItem,
+	ListOther
+} from 'vue-ydui/dist/lib.rem/list';
+
+import {
+	Badge
+} from 'vue-ydui/dist/lib.rem/badge';
+
+
 
 Vue.component(Button.name, Button);
 Vue.component(ButtonGroup.name, ButtonGroup);
@@ -65,6 +76,10 @@ Vue.component(FlexBoxItem.name, FlexBoxItem);
 Vue.component(InfiniteScroll.name, InfiniteScroll);
 Vue.component(Tab.name, Tab);
 Vue.component(TabPanel.name, TabPanel);
+Vue.component(ListTheme.name, ListTheme);
+Vue.component(ListItem.name, ListItem);
+Vue.component(ListOther.name, ListOther);
+Vue.component(Badge.name, Badge);
 
 // 加载基础样式
 import 'vue-ydui/dist/ydui.base.css';
