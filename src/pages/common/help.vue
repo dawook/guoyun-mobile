@@ -1,12 +1,20 @@
 <template>
   <div class="m-home m-home--fixed">
-    <yd-navbar :title='title' class='fixed'>
+    <yd-navbar title='常见问题' class='fixed'>
       <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
     </yd-navbar>
 
     <yd-infinitescroll :on-infinite="load" ref="infiniteScroll">
 
-      <v-list :datas="listData" slot="list"></v-list>
+      <!-- <v-list :datas="listData" slot="list"></v-list> -->
+      <yd-accordion slot='list'>
+        <yd-accordion-item
+          v-for = '(item, index) in dataList'
+          :key='index'
+          :title="index + 1 + '.' +item.name">
+          <div class="content" v-html='item.contents'></div>
+        </yd-accordion-item>
+      </yd-accordion>
 
       <!-- 数据全部加载完毕显示 -->
       <span slot="doneTip" class='dont-tips'>到底了，别扯了</span>
@@ -20,36 +28,30 @@
 </template>
 
 <script>
-import vList from '@/components/projectList'
-
 export default {
-  name: 'projectPage',
-  components: {
-    vList
-  },
+  name: 'help',
   data() {
     return {
-      type: '',
+      dataList: [],
       ipage: 1,
-      title: '',
-      totalPage: 0,
-      listData: []
+      totalPage: 0
     }
   },
   methods: {
     load() {
-      this.$http.get(`${this.HOST}/api.php?action=invest`, {
+      this.$http.get(`${this.HOST}/api.php?action=faq`, {
         params: {
-          type: this.type,
           p: this.ipage
         }
       }).then(response => {
         let data = response.data.data;
+
         this.totalPage = data.total_page;
 
         for (let i = 0, iL = data.list.length; i < iL; i++) {
-          this.listData.push(data.list[i])
+          this.dataList.push(data.list[i])
         }
+        console.log(this.dataList)
 
         if (this.ipage >= this.totalPage) {
           /* 所有数据加载完毕 */
@@ -61,40 +63,17 @@ export default {
         this.$refs.infiniteScroll.$emit('ydui.infinitescroll.finishLoad');
 
         this.ipage++;
-
       })
     }
   },
-  created() {
-    let mapType = {
-      "house": {
-        id: 1,
-        title: '不良资产'
-      },
-      "ppp": {
-        id: 2,
-        title: '政府PPP项目'
-      },
-      "film": {
-        id: 3,
-        title: '影视文化'
-      },
-      "pvp": {
-        id: 4,
-        title: '光伏惠民'
-      },
-    };
-
-    let key = this.$route.params.type;
-
-
-    this.type = mapType[key].id;
-    this.title = mapType[key].title;
-
-  },
-
   mounted() {
     this.load();
   }
 }
 </script>
+
+<style scoped>
+.content {
+  padding: .25rem;
+}
+</style>

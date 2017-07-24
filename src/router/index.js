@@ -33,5 +33,17 @@ export default new Router({
 		path: '/notice/:id',
 		name: 'notice',
 		component: resolve => require(['@/pages/news/notice.vue'], resolve)
+	}, {
+		path: '/aboutus',
+		name: 'aboutus',
+		component: resolve => require(['@/pages/common/about_us.vue'], resolve)
+	}, {
+		path: '/protocol',
+		name: 'protocol',
+		component: resolve => require(['@/pages/common/protocol.vue'], resolve)
+	}, {
+		path: '/help',
+		name: 'help',
+		component: resolve => require(['@/pages/common/help.vue'], resolve)
 	}]
 })

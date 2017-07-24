@@ -6,6 +6,10 @@ body {
 	margin: 0 auto;
 	min-width: 300px;
 }
+.m-home.m-home--fixed {
+  padding-top: .9rem;
+}
+
 
 .scale-1px{
   position: relative;
@@ -79,6 +83,14 @@ body {
   .scale-1px.right:after{
     transform: scaleX(.334);
   }
+}
+
+/* 导航 */
+.m-navbar.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 /* Tab 切换透明背景  */

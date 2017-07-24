@@ -1,19 +1,19 @@
 <template>
-  <div class="m-home">
-    <yd-navbar title='商学院'>
+  <div class="m-home m-home--fixed">
+    <yd-navbar title='商学院' class='fixed'>
       <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
     </yd-navbar>
-    
+
     <div class="school__banner">
     	<img :src="img">
     </div>
-		
+
     <school-list title="商学院" subTitle="尊贵服务，即刻开启" icon='school' :datas='listData'></school-list>
   </div>
 </template>
 
 <script>
-import schoolList from '@/components/schoolList' 
+import schoolList from '@/components/schoolList'
 
 export default {
   name: 'projectPage',

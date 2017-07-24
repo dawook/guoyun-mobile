@@ -2,11 +2,11 @@
   <footer class='footer'>
     <div class="footer__main">
       <div class="footer__nav">
-        <router-link to='/register'>注册</router-link>
-        <router-link to='/login'>登录</router-link>
+        <router-link to='/register'>注册/登陆</router-link>
         <router-link to='/mobile'>客户端</router-link>
+        <router-link to='/aboutus'>关于我们</router-link>
+        <router-link to='/protocol'>服务协议</router-link>
         <router-link to='/help'>帮助</router-link>
-        <router-link to='/feedback'>反馈</router-link>
       </div>
       <p class="copyright">
         Copyright &copy; 国运产权 www.ahgycq.com

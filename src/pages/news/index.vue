@@ -1,6 +1,6 @@
 <template>
-	<div class="m-home">
-    <yd-navbar title='国运速报' >
+	<div class="m-home m-home--fixed">
+    <yd-navbar title='国运速报' class='fixed'>
       <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
     </yd-navbar>
 

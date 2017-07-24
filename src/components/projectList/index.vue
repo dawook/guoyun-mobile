@@ -6,12 +6,12 @@
 			<span class="tips" v-text='subTitle' v-if='subTitle'></span>
 		</div>
 		<ul class="project__list line-1px--top">
-			<li class="project__list-item line-1px" 
+			<li class="project__list-item line-1px"
 				v-for='(item, index) in datas'
 				:key='index'>
 				<router-link :to="'/detail/invest/' + item.borrow_nid">
 					<p class="project-name">
-						<span class="badge">{{item.borrow_period > 12 ? item.borrow_period + "天" : item.borrow_period + "个月"}}</span> 
+						<span class="badge">{{item.borrow_period > 12 ? item.borrow_period + "天" : item.borrow_period + "个月"}}</span>
 						{{item.title || item.name}}
 					</p>
 					<list-content :item='item'></list-content>
@@ -59,17 +59,18 @@ export default {
 		}
 	},
 	created() {
-		
+
 	}
 }
 </script>
 
 <style scoped>
 	.badge {
-		padding: 0 2px;
+		padding: 1px 2px 0;
 		margin-left: 1px;
 		border: 1px solid #3399d5;
 		color: #3399d5;
+		background-color: transparent;
 	}
 	.project {
 		margin: .2rem 0;
@@ -108,7 +109,7 @@ export default {
 		left: 0;
 		height: 1px;
 		background-color: #ccc;
-		transform: scaleY(.5); 
+		transform: scaleY(.5);
 	}
 	.line-1px:after {
 		bottom: 0;
@@ -121,7 +122,7 @@ export default {
 		position: relative;
 		width: 100%;
 	}
-	
+
 	.project__list-item {
 		position: relative;
 		margin-left: .7rem;
@@ -147,5 +148,5 @@ export default {
 	.project-more:after {
 		left: .7rem;
 	}
-	
+
 </style>

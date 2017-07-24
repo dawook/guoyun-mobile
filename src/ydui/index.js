@@ -57,6 +57,11 @@ import {
 	Badge
 } from 'vue-ydui/dist/lib.rem/badge';
 
+import {
+	Accordion,
+	AccordionItem
+} from 'vue-ydui/dist/lib.rem/accordion';
+
 
 
 Vue.component(Button.name, Button);
@@ -80,6 +85,8 @@ Vue.component(ListTheme.name, ListTheme);
 Vue.component(ListItem.name, ListItem);
 Vue.component(ListOther.name, ListOther);
 Vue.component(Badge.name, Badge);
+Vue.component(Accordion.name, Accordion);
+Vue.component(AccordionItem.name, AccordionItem);
 
 // 加载基础样式
 import 'vue-ydui/dist/ydui.base.css';
