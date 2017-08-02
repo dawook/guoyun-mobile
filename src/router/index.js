@@ -26,9 +26,16 @@ export default new Router({
 			keepAlive: true
 		}
 	}, {
+		path: '/detail/invest/:id',
+		name: 'detail',
+		component: resolve => require(['@/pages/detail/'], resolve)
+	}, {
 		path: '/news',
 		name: 'news',
-		component: resolve => require(['@/pages/news'], resolve)
+		component: resolve => require(['@/pages/news'], resolve),
+		mate: {
+			keepAlive: true
+		}
 	}, {
 		path: '/notice/:id',
 		name: 'notice',

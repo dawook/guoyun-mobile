@@ -62,6 +62,19 @@ import {
 	AccordionItem
 } from 'vue-ydui/dist/lib.rem/accordion';
 
+import {
+	Layout
+} from 'vue-ydui/dist/lib.rem/layout';
+
+import {
+	CountUp
+} from 'vue-ydui/dist/lib.rem/countup';
+
+import {
+	CellGroup,
+	CellItem
+} from 'vue-ydui/dist/lib.rem/cell';
+
 
 
 Vue.component(Button.name, Button);
@@ -87,6 +100,10 @@ Vue.component(ListOther.name, ListOther);
 Vue.component(Badge.name, Badge);
 Vue.component(Accordion.name, Accordion);
 Vue.component(AccordionItem.name, AccordionItem);
+Vue.component(Layout.name, Layout);
+Vue.component(CountUp.name, CountUp);
+Vue.component(CellGroup.name, CellGroup);
+Vue.component(CellItem.name, CellItem);
 
 // 加载基础样式
 import 'vue-ydui/dist/ydui.base.css';
