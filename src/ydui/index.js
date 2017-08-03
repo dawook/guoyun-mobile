@@ -76,7 +76,6 @@ import {
 } from 'vue-ydui/dist/lib.rem/cell';
 
 
-
 Vue.component(Button.name, Button);
 Vue.component(ButtonGroup.name, ButtonGroup);
 Vue.component(Switch.name, Switch);
