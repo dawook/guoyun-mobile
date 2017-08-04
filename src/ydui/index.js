@@ -75,6 +75,15 @@ import {
 	CellItem
 } from 'vue-ydui/dist/lib.rem/cell';
 
+import {
+	Confirm,
+	Alert,
+	Toast,
+	Notify,
+	Loading
+} from 'vue-ydui/dist/lib.rem/dialog';
+
+
 
 Vue.component(Button.name, Button);
 Vue.component(ButtonGroup.name, ButtonGroup);
@@ -103,6 +112,14 @@ Vue.component(Layout.name, Layout);
 Vue.component(CountUp.name, CountUp);
 Vue.component(CellGroup.name, CellGroup);
 Vue.component(CellItem.name, CellItem);
+
+Vue.prototype.$dialog = {
+	confirm: Confirm,
+	alert: Alert,
+	toast: Toast,
+	notify: Notify,
+	loading: Loading,
+};
 
 // 加载基础样式
 import 'vue-ydui/dist/ydui.base.css';
