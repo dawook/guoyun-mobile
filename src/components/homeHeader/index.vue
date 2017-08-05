@@ -21,6 +21,7 @@
 
 <script>
 import WebStorageCache from 'web-storage-cache'
+import {getStore} from '@/utils/assist.js'
 
 export default {
 	name: 'homeHeader',
@@ -42,8 +43,9 @@ export default {
 	},
 	created() {
 		let wsCache = new WebStorageCache();
-		let _user = wsCache.get('user');
-		this.avatarImg = _user ?  _user.avatar : '';
+		let _user = getStore('_user_id');
+		console.log(_user);
+		this.avatarImg = _user ?  require('@/assets/images/head.jpg') : '';
 	}
 }
 </script>

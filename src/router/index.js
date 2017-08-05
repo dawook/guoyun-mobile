@@ -12,6 +12,14 @@ export default new Router({
 			keepAlive: true
 		}
 	}, {
+		path: '/login',
+		name: 'login',
+		component: resolve => require(['@/pages/common/login.vue'], resolve)
+	}, {
+		path: '/register',
+		name: 'register',
+		component: resolve => require(['@/pages/common/register.vue'], resolve)
+	}, {
 		path: '/project/:type',
 		name: 'project',
 		component: resolve => require(['@/pages/project'], resolve),

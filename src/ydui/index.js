@@ -83,6 +83,19 @@ import {
 	Loading
 } from 'vue-ydui/dist/lib.rem/dialog';
 
+import {
+	Input
+} from 'vue-ydui/dist/lib.rem/input';
+
+import {
+	CheckBox,
+	CheckBoxGroup
+} from 'vue-ydui/dist/lib.rem/checkbox';
+
+import {
+	SendCode
+} from 'vue-ydui/dist/lib.rem/sendcode';
+
 
 
 Vue.component(Button.name, Button);
@@ -112,6 +125,10 @@ Vue.component(Layout.name, Layout);
 Vue.component(CountUp.name, CountUp);
 Vue.component(CellGroup.name, CellGroup);
 Vue.component(CellItem.name, CellItem);
+Vue.component(Input.name, Input);
+Vue.component(CheckBox.name, CheckBox);
+Vue.component(CheckBoxGroup.name, CheckBoxGroup);
+Vue.component(SendCode.name, SendCode);
 
 Vue.prototype.$dialog = {
 	confirm: Confirm,
