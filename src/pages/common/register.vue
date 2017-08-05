@@ -133,11 +133,16 @@ export default {
 			if(!this.valid()) return false;
 
 
-			this.$http.post(`${this.HOST}/api.php?action=login`, qs.stringify({
-    		keywords: this.username,
-				password: this.password
+			this.$http.post(`${this.HOST}/api.php?action=reg`, qs.stringify({
+				phone: this.username,
+				password: this.password,
+				passwords: this.confirm_password,
+				invite_username: '',
+				code: this.code,
+				sms_id: this.smsId
     	})).then(response => {
         let data = response.data;
+        console.log(data)
         if(data.code == 200) {
         	this.$router.back();
         } else {
