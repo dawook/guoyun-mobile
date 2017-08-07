@@ -75,10 +75,10 @@
         </yd-cell-item>    
       </yd-cell-group>
       <yd-cell-group>
-        <yd-cell-item arrow>
+        <yd-cell-item arrow type="link" href="#">
           <span class="info-tips" slot="left">资产详情</span>
         </yd-cell-item>
-        <yd-cell-item arrow>
+        <yd-cell-item arrow type="link" href="#">
           <span class="info-tips" slot="left">购买人数</span>
           <span class="info-tips" slot='right'>{{data.num > 0 ? data.num : 0}}人</span>
         </yd-cell-item>    
@@ -104,6 +104,10 @@
     	<div :class='["btnBuy", `btn-status--${iBtn}`]' @click='handleBuy'>{{btnTextList[iBtn]}}</div>
     </div>
 
+    <div class="assets">
+    	
+    </div>
+
   </div>
 </template>
 
@@ -112,13 +116,11 @@ import qs from 'qs'
 import {setStore} from '@/utils/assist.js'
 
 import vProgress from '@/components/progress'
-import schedule from './schedule.vue'
 
 export default {
 	name: 'detail',
 	components: {
-		vProgress,
-		schedule
+		vProgress
 	},
 	data() {
 		return {
@@ -231,6 +233,7 @@ export default {
 	},
 	created() {
 		this.id = this.$route.params.id;
+
 	}
 }
 </script>
@@ -453,6 +456,15 @@ export default {
 	.status--4 .item:nth-child(5) .line:before,
 	.status--5 .item:nth-child(6) .line:before {
 		right: 0;
+	}
+
+	.assets {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		z-index: 200;
+		width: 100%;
+		background-color: #000;
 	}
 
 </style>
