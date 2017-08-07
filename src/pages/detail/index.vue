@@ -104,10 +104,6 @@
     	<div :class='["btnBuy", `btn-status--${iBtn}`]' @click='handleBuy'>{{btnTextList[iBtn]}}</div>
     </div>
 
-    <div class="assets">
-    	
-    </div>
-
   </div>
 </template>
 
@@ -456,15 +452,6 @@ export default {
 	.status--4 .item:nth-child(5) .line:before,
 	.status--5 .item:nth-child(6) .line:before {
 		right: 0;
-	}
-
-	.assets {
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		z-index: 200;
-		width: 100%;
-		background-color: #000;
 	}
 
 </style>
