@@ -124,6 +124,7 @@ export default {
             mes: data.data,
             timeout: 1500
           });
+          this.password = '';
         }
 
       })

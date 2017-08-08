@@ -64,5 +64,9 @@ export default new Router({
 		path: '/help',
 		name: 'help',
 		component: resolve => require(['@/pages/common/help.vue'], resolve)
+	}, {
+		path: '/user',
+		name: 'user',
+		component: resolve => require(['@/pages/user/'], resolve)
 	}]
 })
