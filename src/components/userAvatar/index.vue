@@ -4,7 +4,7 @@
 		<p class="user-name">
 			{{userName}}
 			<yd-badge type="hollow" color='#eee' class='level'>
-				金卡会员
+				{{levelSchool[+level]}}
 				<i class="dy-icon-arrow-right icon"></i>
 			</yd-badge>
 		</p>
@@ -25,6 +25,11 @@ export default {
 		},
 		level: {
 			type: [String, Number]
+		}
+	},
+	data() {
+		return {
+			levelSchool: ['银卡会员','金卡会员','白金会员','钻石会员','黑卡会员']
 		}
 	}
 }
