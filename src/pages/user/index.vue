@@ -54,7 +54,7 @@ export default {
 		position: relative;
 		width: 100%;
 		overflow: hidden;
-    min-height: 3.4rem;
+    min-height: 3.1rem;
     color: #fff;
     background: #ed424b url(../../assets/images/center-header-bg.0.1.jpg) no-repeat center;
     background-size: cover;
