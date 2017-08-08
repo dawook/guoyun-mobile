@@ -75,10 +75,10 @@
         </yd-cell-item>    
       </yd-cell-group>
       <yd-cell-group>
-        <yd-cell-item arrow type="link" href="#">
+        <yd-cell-item arrow @click.native='popupIsShow = true'>
           <span class="info-tips" slot="left">资产详情</span>
         </yd-cell-item>
-        <yd-cell-item arrow type="link" href="#">
+        <yd-cell-item arrow @click.native='buyersIsShow = true'>
           <span class="info-tips" slot="left">购买人数</span>
           <span class="info-tips" slot='right'>{{data.num > 0 ? data.num : 0}}人</span>
         </yd-cell-item>    
@@ -104,19 +104,28 @@
     	<div :class='["btnBuy", `btn-status--${iBtn}`]' @click='handleBuy'>{{btnTextList[iBtn]}}</div>
     </div>
 
+    <assets :list='data' :isShow='popupIsShow' @popupClose='popupClose'></assets>
+		<buyers-list
+			:nid='id'
+			:isShow='buyersIsShow'
+			@buyerClose='buyerClose'></buyers-list>
   </div>
 </template>
 
 <script>
 import qs from 'qs'
-import {setStore} from '@/utils/assist.js'
+import {setStore, pageScroll, scrollTop} from '@/utils/assist.js'
 
 import vProgress from '@/components/progress'
+import assets from './assets.vue'
+import buyersList from './buyersList.vue'
 
 export default {
 	name: 'detail',
 	components: {
-		vProgress
+		vProgress,
+		assets,
+		buyersList
 	},
 	data() {
 		return {
@@ -137,7 +146,10 @@ export default {
 
 			btnTextList: ['即将发售', '立即购买', '已完成', '已结算'],
 			bBtn: false,
-			iBtn: 0
+			iBtn: 0,
+
+			popupIsShow: false,
+			buyersIsShow: false
 		}
 	},
 	watch: {
@@ -225,6 +237,15 @@ export default {
 			} else {
 				
 			}
+		},
+
+
+		// popup
+		popupClose(val) {
+			this.popupIsShow = !!val;
+		},
+		buyerClose(val) {
+			this.buyersIsShow = !!val;
 		}
 	},
 	created() {
@@ -453,5 +474,11 @@ export default {
 	.status--5 .item:nth-child(6) .line:before {
 		right: 0;
 	}
+
+	.assets__container {
+		width: 100%;
+		overflow: hidden;
+	}
+
 
 </style>

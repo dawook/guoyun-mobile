@@ -119,3 +119,24 @@ export const decrypt = s => {
 	}
 	return fnl;
 }
+
+// 禁止/释放页面滚动方法
+export const pageScroll = (function() {
+	const fn = function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+	};
+	let islock = false;
+
+	return {
+		lock: function() {
+			if (islock) return;
+			islock = true;
+			document.addEventListener('touchmove', fn);
+		},
+		unlock: function() {
+			islock = false;
+			document.removeEventListener('touchmove', fn);
+		}
+	};
+})();

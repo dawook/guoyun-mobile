@@ -96,6 +96,16 @@ import {
 	SendCode
 } from 'vue-ydui/dist/lib.rem/sendcode';
 
+import {
+	Popup
+} from 'vue-ydui/dist/lib.rem/popup';
+
+import {
+	LightBox,
+	LightBoxImg,
+	LightBoxTxt
+} from 'vue-ydui/dist/lib.rem/lightbox';
+
 
 
 Vue.component(Button.name, Button);
@@ -129,6 +139,10 @@ Vue.component(Input.name, Input);
 Vue.component(CheckBox.name, CheckBox);
 Vue.component(CheckBoxGroup.name, CheckBoxGroup);
 Vue.component(SendCode.name, SendCode);
+Vue.component(Popup.name, Popup);
+Vue.component(LightBox.name, LightBox);
+Vue.component(LightBoxImg.name, LightBoxImg);
+Vue.component(LightBoxTxt.name, LightBoxTxt);
 
 Vue.prototype.$dialog = {
 	confirm: Confirm,

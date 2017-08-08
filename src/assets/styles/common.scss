@@ -10,8 +10,15 @@ body {
   padding-top: .9rem;
 }
 
-.text-danger {
+.text-danger,
+.app-text-main {
   color: #ef4f4f;
+}
+.app-text-gary {
+  color: gray;
+}
+.m-t-md {
+  margin-top: .25rem;
 }
 
 .scale-1px{
@@ -153,4 +160,22 @@ body {
 // 文章详情页
 .article__content img {
   max-width: 100%;
+}
+
+// 项目详情
+.assets__container img {
+  margin: 0 auto;
+  width: 90%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px #ccc;
+}
+.film__container img {
+  width: 98%;
+  margin: 0 auto;
+}
+
+// lightbox 层级
+.m-lightbox {
+  z-index: 2000;
 }
