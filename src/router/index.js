@@ -20,6 +20,10 @@ export default new Router({
 		name: 'register',
 		component: resolve => require(['@/pages/common/register.vue'], resolve)
 	}, {
+		path: '/find_password',
+		name: 'find_password',
+		component: resolve => require(['@/pages/common/password_find.vue'], resolve)
+	}, {
 		path: '/project/:type',
 		name: 'project',
 		component: resolve => require(['@/pages/project'], resolve),

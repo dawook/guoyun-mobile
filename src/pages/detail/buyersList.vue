@@ -66,14 +66,12 @@ export default {
         }
       }).then(response => {
         let data = response.data.data;
-        console.log(data)
 
         this.totalPage = data.total_page;
 
         for (let i = 0, iL = data.list.length; i < iL; i++) {
           this.aList.push(data.list[i])
         }
-        console.log(this.aList)
 
         if (this.ipage >= this.totalPage) {
           /* 所有数据加载完毕 */

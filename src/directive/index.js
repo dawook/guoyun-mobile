@@ -5,3 +5,12 @@ Vue.directive('back', function(el) {
 		window.history.go(-1)
 	}
 });
+
+// 获取焦点
+Vue.directive('focus', function(el, {
+	value
+}) {
+	if (value) {
+		el.focus();
+	}
+})

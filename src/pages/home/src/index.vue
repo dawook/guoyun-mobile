@@ -22,16 +22,16 @@
     <school-list title="商学院" subTitle="尊贵服务，即刻开启" icon='school' :datas="schoolData" link='/school'></school-list>
     
     <!-- 光伏项目 -->
-    <v-list title="光伏惠民" subTitle="千村万户，光伏扶贫" icon='pvp' :datas="pvpData" link='/pvp'></v-list>
+    <v-list title="光伏惠民" subTitle="千村万户，光伏扶贫" icon='pvp' :datas="pvpData"></v-list>
 
     <!-- 影视文化 -->
-    <v-list title="影视文化" icon='film' :datas="filmData" link='/film'></v-list>
+    <v-list title="影视文化" icon='film' :datas="filmData"></v-list>
 
     <!-- PPP项目 -->
-    <v-list title="PPP项目" icon='fields' :datas="pppData" link='/ppp'></v-list>
+    <v-list title="PPP项目" icon='fields' :datas="pppData"></v-list>
 
     <!-- 不良资产 -->
-    <v-list title="不良资产" icon='money-house' :datas="houseData" link='/house'></v-list>
+    <v-list title="不良资产" icon='money-house' :datas="houseData"></v-list>
 
     <v-footer></v-footer>
   </div>

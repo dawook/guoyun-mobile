@@ -42,7 +42,7 @@
     	</div>
 			
 			<yd-flexbox class='login__tips'>
-        <yd-flexbox-item>忘记密码？<span>找回密码</span></yd-flexbox-item>
+        <yd-flexbox-item>忘记密码？<span @click='handleToFindPwd'>找回密码</span></yd-flexbox-item>
         <yd-flexbox-item class='login__tips--right'>还没账号？<span @click='handleToRegister'>立即注册</span></yd-flexbox-item>
       </yd-flexbox>
 
@@ -115,7 +115,6 @@ export default {
 				password: this.password
     	})).then(response => {
         let data = response.data;
-        console.log(data)
 
         if(data.code == 200) {
         	this.setSession(data);
@@ -132,6 +131,9 @@ export default {
 
 		handleToRegister() {
 			this.$router.push({path: 'register'});
+		},
+		handleToFindPwd() {
+			this.$router.push({path: 'find_password'});
 		}
 	}
 }
