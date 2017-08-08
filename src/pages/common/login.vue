@@ -7,7 +7,7 @@
 		<div class="logo">
 			<img :src="logoUrl">
 		</div>
-		
+
 		<div class="form__wrap">
 			<yd-cell-group>
         <yd-cell-item>
@@ -23,7 +23,7 @@
         </yd-cell-item>
         <yd-cell-item>
           <span slot="left" class="form__tips"><i class="dy-icon-password"></i></span>
-          <yd-input 
+          <yd-input
           	ref='password'
           	slot="right"
           	type="password"
@@ -40,14 +40,14 @@
     	<div class="or-line scale-1px top">
     		<span class="content">OR</span>
     	</div>
-			
+
 			<yd-flexbox class='login__tips'>
         <yd-flexbox-item>忘记密码？<span @click='handleToFindPwd'>找回密码</span></yd-flexbox-item>
         <yd-flexbox-item class='login__tips--right'>还没账号？<span @click='handleToRegister'>立即注册</span></yd-flexbox-item>
       </yd-flexbox>
 
 		</div>
-		
+
 
   </div>
 </template>
@@ -99,7 +99,7 @@ export default {
 			setStore('_user_token', e.data.token + "");
 			setStore('_user_phone', e.data.phone + "");
 			setStore('_user_kefuid', e.data.kefu_name + "");
-			setStore('_user_school', e.data.school_nid + "");
+			setStore('_user_school', e.data.school_nid);
 			setStore('_user_real_name', e.data.realname + "");
 
 			this.username = '';
@@ -141,7 +141,7 @@ export default {
 </script>
 
 <style scoped>
-	
+
 	.logo {
 		margin: 1rem auto 0;
 		width: 1.2rem;
@@ -191,6 +191,6 @@ export default {
 	.login__tips span {
 		color: #ef4f4f;
 	}
-	
-	
+
+
 </style>

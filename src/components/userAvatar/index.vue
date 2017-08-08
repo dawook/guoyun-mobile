@@ -3,8 +3,8 @@
 		<img class="avatar-img" :src='imgSrc'></img>
 		<p class="user-name">
 			{{userName}}
-			<yd-badge type="hollow" color='#eee' class='level'>
-				{{levelSchool[+level]}}
+			<yd-badge type="hollow" color='#eee' class='level' v-if='level'>
+				{{levelSchool[+level - 1]}}
 				<i class="dy-icon-arrow-right icon"></i>
 			</yd-badge>
 		</p>
@@ -14,6 +14,9 @@
 </template>
 
 <script>
+
+
+
 export default {
 	name: 'userAvatar',
 	props: {
@@ -24,7 +27,7 @@ export default {
 			type: String
 		},
 		level: {
-			type: [String, Number]
+			type: [String, Number, Object, Boolean]
 		}
 	},
 	data() {
