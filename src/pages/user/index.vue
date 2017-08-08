@@ -8,6 +8,7 @@
 				:level='level'></user-avatar>
 		</div>
 
+		<user-account></user-account>
 
 
 	</div>
@@ -16,13 +17,16 @@
 <script>
 import userNavbar from '@/components/userNavbar'
 import userAvatar from '@/components/userAvatar'
+import userAccount from '@/components/userAccount'
+
 import {getStore} from '@/utils/assist.js'
 
 export default {
 	name: 'user',
 	components: {
 		userNavbar,
-		userAvatar
+		userAvatar,
+		userAccount
 	},
 	data() {
 		return {
