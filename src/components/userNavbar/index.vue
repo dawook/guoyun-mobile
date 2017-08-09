@@ -2,7 +2,7 @@
 	<yd-flexbox class='navbar'>
 		<div class="back-icon"  v-back></div>
 	  <yd-flexbox-item class='navbar__title'>个人中心</yd-flexbox-item>
-	  <div class="setting-icon">
+	  <div class="setting-icon" @click.stop='handleSet'>
 			<yd-icon name="setting" size='.36rem'></yd-icon>
 	  </div>
 	</yd-flexbox>
@@ -10,7 +10,12 @@
 
 <script>
 export default {
-	name: 'userNavbar'
+	name: 'userNavbar',
+	methods: {
+		handleSet() {
+			this.$emit('changeSet', true);
+		}
+	}
 }
 </script>
 

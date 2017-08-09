@@ -1,27 +1,27 @@
 <template>
-  <yd-flexbox class='app-text-center'>
+  <yd-flexbox class='app-text-center nav-box'>
     <yd-flexbox-item>
       <div class="navbar__item">
-        <span>99999.00</span>
+        <span v-text='total'></span>
         <p class="tips">账户总额(￥)</p>
       </div>
     </yd-flexbox-item>
     <yd-flexbox-item>
       <div class="navbar__item">
-        <span>99999.00</span>
+        <span v-text='balance'></span>
         <p class="tips">可用余额(￥)</p>
       </div>
     </yd-flexbox-item>
     <yd-flexbox-item>
       <div class="navbar__item">
-        <span>99999.00</span>
+        <span v-text='netMoney'></span>
         <p class="tips">净赚收益(￥)</p>
       </div>
     </yd-flexbox-item>
     <div class="sp scale-1px left">
       <div class="navbar__item">
         <i class="arrow dy-icon-arrow-right"></i>
-        <i class="dy-icon-recharge icon app-text-main"></i>
+        <i class="dy-icon-purse icon app-text-main"></i>
         <p class="text-main">去充值</p>
       </div>
     </div>
@@ -29,16 +29,63 @@
 </template>
 
 <script>
+import qs from 'qs'
+import {getStore} from '@/utils/assist.js'
+
 export default {
-  name: 'userAccount'
+  name: 'userAccount',
+  data() {
+    return {
+      total: '0.00',
+      balance: '0.00',
+      netMoney: '0.00'
+    }
+  },
+  methods: {
+    getMoney() {
+      let 
+        user_id = getStore("_user_id"),
+        token = getStore("_user_token");
+
+      this.$http.post(`${this.HOST}/api.php?action=usercenter`, qs.stringify({
+        type: "gettotal",
+        user_id: user_id,
+        token: token
+      })).then(response => {
+        let 
+          e = response.data,
+          data = e.data;
+        if(e.code == 200) {
+          this.total = data.total;
+          this.balance = data.balance;
+          this.netMoney = data.repay_account_interest;
+        } else {
+          this.$dialog.toast({
+            mes: e.data,
+            timeout: 1500
+          });
+          this.$router.replace({path: 'login'});
+        }
+
+      })
+    }
+  },
+  created() {
+    this.getMoney();
+  }
 }
 </script>
 
 <style scoped>
+  .nav-box {
+    margin-bottom: .35rem;
+    background-color: #fff;
+  }
   .navbar__item {
     position: relative;
     padding: .25rem 0;
     background-color: #fff;
+    overflow: hidden;
   }
   .arrow {
     position: absolute;
@@ -47,16 +94,16 @@ export default {
     color: #eee;
     margin-top: -8px;
     background-color: #fff;
-    font-size: .45rem;
+    font-size: 22px;
   }
   .arrow:after {
     position: absolute;
-    top: 5px;
+    top: 7px;
     left: 8px;
     content: "";
     z-index: 10;
     width: 1px;
-    height: 7px;
+    height: 6px;
     background-color: #fff;
   }
   .tips {

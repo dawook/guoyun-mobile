@@ -106,6 +106,15 @@ import {
 	LightBoxTxt
 } from 'vue-ydui/dist/lib.rem/lightbox';
 
+import {
+	GridsItem,
+	GridsGroup
+} from 'vue-ydui/dist/lib.rem/grids';
+
+import {
+	ActionSheet
+} from 'vue-ydui/dist/lib.rem/actionsheet';
+
 
 
 Vue.component(Button.name, Button);
@@ -143,6 +152,10 @@ Vue.component(Popup.name, Popup);
 Vue.component(LightBox.name, LightBox);
 Vue.component(LightBoxImg.name, LightBoxImg);
 Vue.component(LightBoxTxt.name, LightBoxTxt);
+Vue.component(GridsItem.name, GridsItem);
+Vue.component(GridsGroup.name, GridsGroup);
+Vue.component(ActionSheet.name, ActionSheet);
+
 
 Vue.prototype.$dialog = {
 	confirm: Confirm,
