@@ -108,7 +108,6 @@ export default {
 		submit() {
 			if(!this.valid()) return false;
 
-			console.log(`${this.username}:${this.password}`)
 
 			this.$http.post(`${this.HOST}/api.php?action=login`, qs.stringify({
     		keywords: this.username,

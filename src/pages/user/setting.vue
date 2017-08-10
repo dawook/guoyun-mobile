@@ -6,11 +6,12 @@
     <div class="container">
 
       <yd-cell-group>
-        <yd-cell-item :arrow='true'>
+        <yd-cell-item :arrow='!realName' @click.native='setRealname'>
           <span slot="left">实名认证</span>
-          <span slot='right'>姚**</span>
+          <span slot='right' v-if='!realName' class="app-text-main">未认证</span>
+          <span slot='right' v-else v-text='realName'></span>
         </yd-cell-item>
-        <yd-cell-item :arrow='false'>
+        <yd-cell-item>
           <span slot="left">绑定手机</span>
           <span slot='right'>152****6283</span>
         </yd-cell-item>
@@ -34,28 +35,52 @@
 
     </div>
 
+		<user-real-name :bPopupRealname='bPopupRealname' @realNameClose='realNameClose'></user-real-name>  
+
     
   </yd-popup>
 </template>
 
 <script>
+import {setStore, getStore} from '@/utils/assist.js'
+import userRealName from '@/components/userRealName'
+
 export default {
-	name: 'buyersList',
+	name: 'settingPage',
 	props: {
 		isShow: {
 			type: Boolean,
 			default: false
 		}
 	},
+	components: {
+		userRealName
+	},
 	data() {
 		return {
-			avatarImg: require('@/assets/images/head.jpg')
+			realName: '',
+			bPopupRealname: false
 		}
 	},
 	methods: {
 		handleClose() {
 			this.$emit('settingClose', false)
 		},
+		getRealname() {
+			this.realName = getStore("_user_real_name");
+		},
+		setRealname() {
+			if(!this.realName) {
+				this.bPopupRealname = true;
+			}
+		},
+		realNameClose(val) {
+			this.getRealname();
+			this.bPopupRealname = !!val;
+		}
+	},
+	created() {
+		this.getRealname();
 	}
 }
 </script>
