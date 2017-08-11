@@ -36,7 +36,7 @@
     </div>
 
 		<user-real-name :bPopupRealname='bPopupRealname' @realNameClose='realNameClose'></user-real-name>  
-
+		<user-modify-pwd bModifyPwd></user-modify-pwd>
     
   </yd-popup>
 </template>
@@ -44,6 +44,7 @@
 <script>
 import {setStore, getStore, clearStore} from '@/utils/assist.js'
 import userRealName from '@/components/userRealName'
+import userModifyPwd from '@/components/userModifyPwd'
 
 export default {
 	name: 'settingPage',
@@ -54,7 +55,8 @@ export default {
 		}
 	},
 	components: {
-		userRealName
+		userRealName,
+		userModifyPwd
 	},
 	data() {
 		return {
