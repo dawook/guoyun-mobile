@@ -30,6 +30,15 @@ export const removeStore = (name, isLocal = false) => {
 	}
 }
 
+// 清空localStorage / sessionStorage
+export const clearStore = (isLocal = false) => {
+	if (isLocal) {
+		localStorage.clear();
+	} else {
+		sessionStorage.clear();
+	}
+}
+
 // 参数是否在指定数组中
 export const oneOf = (value, validList) => {
 	for (let i = 0, iL = validList.length; i < iL; i++) {

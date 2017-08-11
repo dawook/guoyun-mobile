@@ -30,7 +30,7 @@
       </yd-cell-group>
 			
 			<div class="btn-wrap">
-				<yd-button size="large" type="danger">退出登录</yd-button>
+				<yd-button size="large" type="danger" @click.native='exit'>退出登录</yd-button>
 			</div>
 
     </div>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import {setStore, getStore} from '@/utils/assist.js'
+import {setStore, getStore, clearStore} from '@/utils/assist.js'
 import userRealName from '@/components/userRealName'
 
 export default {
@@ -77,6 +77,15 @@ export default {
 		realNameClose(val) {
 			this.getRealname();
 			this.bPopupRealname = !!val;
+		},
+
+		exit() {
+			this.$dialog.notify({
+        mes: `您已退出当前账号`,
+        timeout: 1500
+      });
+			clearStore();
+			this.$router.replace({path: '/'});
 		}
 	},
 	created() {
