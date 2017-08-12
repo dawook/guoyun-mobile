@@ -159,6 +159,9 @@ export default {
             timeout: 1500
           });
         	this.handleClose();
+          if (this.type == 'login') {
+            this.$router.replace({path: 'login'});
+          }
         } else {
         	this.$dialog.toast({
             mes: data.data,
@@ -176,9 +179,6 @@ export default {
 		handleClose() {
 			this.clear();
 			this.$emit("modifyPwdClose", false);
-      if (this.type == 'login') {
-        this.$router.replace({path: 'login'});
-      }
 		}
 	}
 }
