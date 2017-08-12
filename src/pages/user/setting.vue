@@ -18,26 +18,28 @@
       </yd-cell-group>
 
       <yd-cell-group>
-        <yd-cell-item arrow>
+        <yd-cell-item arrow @click.native='openModifyPwd("login")'>
           <span slot="left">修改登录密码</span>
         </yd-cell-item>
-        <yd-cell-item arrow>
+        <yd-cell-item arrow @click.native='openModifyPwd("pay")'>
           <span slot="left">修改支付密码</span>
         </yd-cell-item>
-        <yd-cell-item arrow>
-          <span slot="left">短信提醒</span>
-        </yd-cell-item>
       </yd-cell-group>
-			
+
 			<div class="btn-wrap">
 				<yd-button size="large" type="danger" @click.native='exit'>退出登录</yd-button>
 			</div>
 
     </div>
 
-		<user-real-name :bPopupRealname='bPopupRealname' @realNameClose='realNameClose'></user-real-name>  
-		<user-modify-pwd bModifyPwd></user-modify-pwd>
-    
+		<user-real-name
+      :bPopupRealname='bPopupRealname'
+      @realNameClose='realNameClose'></user-real-name>
+		<user-modify-pwd
+      :bModifyPwd='bModifyPwd'
+      :type='modifyType'
+      @modifyPwdClose='modifyPwdClose'></user-modify-pwd>
+
   </yd-popup>
 </template>
 
@@ -61,7 +63,9 @@ export default {
 	data() {
 		return {
 			realName: '',
-			bPopupRealname: false
+			bPopupRealname: false,
+      bModifyPwd: false,
+      modifyType: 'login'
 		}
 	},
 	methods: {
@@ -80,6 +84,14 @@ export default {
 			this.getRealname();
 			this.bPopupRealname = !!val;
 		},
+    modifyPwdClose(val) {
+      this.bModifyPwd = !!val;
+    },
+    openModifyPwd(val) {
+      this.modifyType=val;
+      this.bModifyPwd = true;
+    },
+
 
 		exit() {
 			this.$dialog.notify({

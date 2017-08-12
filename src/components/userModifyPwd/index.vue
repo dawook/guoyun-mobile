@@ -1,14 +1,15 @@
 <template>
 	<yd-popup v-model="bModifyPwd" position="center" width="90%">
     <div class="main">
-    	<p class="title">修改{{type}}密码</p>
+    	<p class="title">修改{{tips[type]}}密码</p>
     	<yd-cell-group>
         <yd-cell-item>
           <yd-input
           	ref="oldPwd"
           	slot="right"
-          	required
           	v-model='oldPwd'
+            type="password"
+            required
           	regex="\d{6,16}"
           	placeholder="请输入原始密码"></yd-input>
         </yd-cell-item>
@@ -17,18 +18,31 @@
           	ref="newPwd"
           	slot="right"
           	v-model='newPwd'
+            type="password"
           	required
           	regex="\d{6,16}"
-          	placeholder="请输入身份证号码"></yd-input>
+          	placeholder="请输入6-16位新密码"></yd-input>
+        </yd-cell-item>
+        <yd-cell-item>
+          <yd-input
+            ref="confirmPwd"
+            slot="right"
+            v-model='confirmPwd'
+            type="password"
+            required
+            regex="\d{6,16}"
+            placeholder="请再次输入新密码"></yd-input>
         </yd-cell-item>
     	</yd-cell-group>
 
+      <p class="tips" v-if='type === "pay"'>提示：初始支付密码与登录密码一致。</p>
+
 			<div class="btn-wrap">
 				<yd-button type="danger" @click.native='submit'>马上修改</yd-button>
-    		<yd-button type="hollow" @click.native='handleClose'>放弃认证</yd-button>
+    		<yd-button type="hollow" @click.native='handleClose'>放弃修改</yd-button>
 			</div>
-    	
-    </div>	
+
+    </div>
   </yd-popup>
 </template>
 
@@ -45,61 +59,103 @@ export default {
 		},
 		type: {
 			type: String,
-			default: '登录'
-		} 
+			default: 'login'
+		}
 	},
 	data() {
 		return {
 			oldPwd: '',
-			newPwd: ''
+			newPwd: '',
+      confirmPwd: '',
+      tips: {
+        "login": "登陆",
+        "pay": "支付"
+      },
+      postData: {}
 		}
 	},
 	methods: {
 		valid() {
 			let
-				$username = this.$refs.username,
-				$idCard = this.$refs.idCard;
+        $oldPwd = this.$refs.oldPwd,
+				$confirmPwd = this.$refs.confirmPwd,
+				$newPwd = this.$refs.newPwd;
 
-			if(!$username.valid) {
+			if(!$oldPwd.valid) {
 				this.$dialog.notify({
-          mes: `真实姓名必须为2-4位中文`,
+          mes: `原始密码${$oldPwd.errorMsg}`,
           timeout: 3000
         });
         return false;
 			}
 
-			if(!$idCard.valid) {
+			if(!$newPwd.valid) {
 				this.$dialog.notify({
-          mes: `身份证格式错误`,
+          mes: `新密码${$newPwd.errorMsg}`,
           timeout: 3000
         });
         return false;
 			}
+
+      // 验证两次输入密码是否一致
+      if(this.newPwd !== this.confirmPwd) {
+        this.$dialog.notify({
+          mes: `两次输入密码必须一致`,
+          timeout: 3000
+        });
+        return false;
+      }
+
+      if(this.newPwd == this.oldPwd) {
+        this.$dialog.notify({
+          mes: `新密码不能和原始密码一致`,
+          timeout: 3000
+        });
+        return false;
+      }
 
 			return true;
 		},
+    setPostData() {
+      let
+        _user_id = getStore("_user_id"),
+        _token = getStore("_user_token");
+
+      this.postData = {};
+
+      if (this.type === 'login') {
+        let _user_name = getStore("_user_name");
+        this.postData = {
+          type: "mimaupdate",
+          oldpassword:  this.oldPwd,
+          newpassword: this.newPwd,
+          user_id: _user_id,
+          token: _token,
+          username: _user_name
+        }
+      } else if (this.type === 'pay') {
+        this.postData = {
+          type: "jypassword",
+          oldpassword:  this.oldPwd,
+          newpassword: this.newPwd,
+          user_id: _user_id,
+          token: _token
+        }
+      }
+    },
 		submit() {
 			if(!this.valid()) return false;
 
-			let
-				_user_id = getStore("_user_id"),
-				_token = getStore("_user_token");
+      this.setPostData();
 
-			console.log(`${_user_id}:${_token}`)
-			
-			this.$http.post(`${this.HOST}/api.php?action=usercenter`, qs.stringify({
-    		type: "realname",
-				user_id: _user_id,
-				token: _token,
-				realname: this.username,
-				card_id: this.idNum
-    	})).then(response => {
+			this.$http.post(`${this.HOST}/api.php?action=usercenter`,
+        qs.stringify(this.postData)).then(response => {
+
         let data = response.data;
 
         if(data.code == 200) {
-        	setStore("_user_real_name", this.username);
         	this.$dialog.toast({
-            mes: '实名认证成功',
+            mes: `${this.tips[this.type]}密码修改成功`,
             timeout: 1500
           });
         	this.handleClose();
@@ -113,12 +169,16 @@ export default {
       })
 		},
 		clear() {
-			this.username = '';
-			this.idNum = '';
+			this.oldPwd = '';
+      this.newPwd = '';
+			this.confirmPwd = '';
 		},
 		handleClose() {
 			this.clear();
-			this.$emit("realNameClose", false);
+			this.$emit("modifyPwdClose", false);
+      if (this.type == 'login') {
+        this.$router.replace({path: 'login'});
+      }
 		}
 	}
 }
@@ -131,10 +191,15 @@ export default {
 		width: 90%;
 	}
 	.title {
-		font-size: .25rem;
+		font-size: .35rem;
 		text-align: center;
 		margin-bottom: .25rem;
 	}
+  .tips {
+    color: #ef4f4f;
+    font-size: 12px;
+    margin-bottom: .25rem;
+  }
 	.btn-wrap {
 		text-align: right;
 	}
