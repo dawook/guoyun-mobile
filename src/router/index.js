@@ -68,5 +68,9 @@ export default new Router({
 		path: '/user',
 		name: 'user',
 		component: resolve => require(['@/pages/user/'], resolve)
+	}, {
+		path: '/user/recharge',
+		name: 'userRecharge',
+		component: resolve => require(['@/pages/user/recharge.vue'], resolve)
 	}]
 })
