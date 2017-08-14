@@ -107,11 +107,16 @@ body {
 }
 
 /* Tab 切换透明背景  */
+.tab-theme--1 .tab-nav-item,
+.tab-theme--1 .tab-nav-item.tab-active,
+.tab-theme--1 .tab-nav-item.tab-active:active,
 .tab-without-background .tab-nav-item,
 .tab-without-background .tab-nav-item.tab-active,
 .tab-without-background .tab-nav-item.tab-active:active {
   background-color: transparent !important;
 }
+.tab-theme--1 .tab-nav-item.tab-active:before,
+.tab-theme--1 .tab-nav:after,
 .tab-without-background .tab-nav-item.tab-active:before,
 .tab-without-background .tab-nav:after {
   display: none;
@@ -119,6 +124,40 @@ body {
 .tab-without-background .tab-nav-item {
   line-height: 1rem;
 }
+
+/* Tab 自定义样式一  */
+.tab-theme--1 .tab-nav {
+  margin: .25rem auto;
+  width: 80%;
+  border: 1px solid #ef4f4f;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.tab-theme--1 .tab-nav-item {
+  line-height: .55rem;
+}
+.tab-theme--1 .tab-nav-item {
+  border-right: 1px solid #ef4f4f;
+}
+.tab-theme--1 .tab-nav-item:last-child {
+  border-right: none;
+}
+.tab-theme--1 .tab-nav-item a {
+  color: #ef4f4f;
+}
+.tab-theme--1 .tab-nav-item:not(:last-child):after {
+  display: none;
+}
+.tab-theme--1 .tab-nav-item.tab-active {
+  background-color: #ef4f4f !important;
+}
+.tab-theme--1 .tab-nav-item.tab-active a {
+  color: #fff;
+}
+.tab-theme--1 .tab-panel {
+  background: transparent;
+}
+
 
 /* list 没有图片 */
 .list-theme4.without-img .list-item .list-img {
