@@ -41,6 +41,7 @@
 				<yd-button type="danger" @click.native='submit'>马上修改</yd-button>
     		<yd-button type="hollow" @click.native='handleClose'>放弃修改</yd-button>
 			</div>
+      <p class="resetPaypwd" v-if='type === "pay"'>忘记支付密码？<router-link to='/user/reset_paypwd'>重置交易密码</router-link></p>
 
     </div>
   </yd-popup>
@@ -220,4 +221,13 @@ export default {
 	.btn-wrap {
 		text-align: right;
 	}
+  .resetPaypwd {
+    margin-top: .25rem;
+    color: #666;
+    text-align: right;
+    font-size: .22rem;
+  }
+  .resetPaypwd a {
+    color: #ef4f4f;
+  }
 </style>
