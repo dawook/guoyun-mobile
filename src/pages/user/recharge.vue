@@ -1,0 +1,24 @@
+<template>
+	<div class="m-home m-home--fixed">
+    <yd-navbar title='充值中心' class='fixed'>
+      <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
+    </yd-navbar>
+		
+		<yd-tab class='tab-theme--1'>
+        <yd-tab-panel label="支付宝">土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。</yd-tab-panel>
+        <yd-tab-panel label="在线充值">我需要三件东西：爱情友谊和图书。然而这三者之间何其相通！炽热的爱情可以充实图书的内容，图书又是人们最忠实的朋友。</yd-tab-panel>
+        <yd-tab-panel label="线下充值">时间是一切财富中最宝贵的财富。</yd-tab-panel>
+    </yd-tab>
+
+  </div>
+</template>
+
+<script>
+export default {
+	name: 'userRecharge'
+}
+</script>
+
+<style scoped>
+	
+</style>

@@ -19,7 +19,7 @@
       </div>
     </yd-flexbox-item>
     <div class="sp scale-1px left">
-      <div class="navbar__item">
+      <div class="navbar__item" @click.stop='linkTo'>
         <i class="arrow dy-icon-arrow-right"></i>
         <i class="dy-icon-purse icon app-text-main"></i>
         <p class="text-main">去充值</p>
@@ -68,6 +68,9 @@ export default {
         }
 
       })
+    },
+    linkTo() {
+      this.$router.push({path: '/user/recharge'})
     }
   },
   created() {

@@ -41,6 +41,7 @@
 				<yd-button type="danger" @click.native='submit'>马上修改</yd-button>
     		<yd-button type="hollow" @click.native='handleClose'>放弃修改</yd-button>
 			</div>
+      <p class="resetPaypwd" v-if='type === "pay"'>忘记支付密码？<router-link to='/user/reset_paypwd'>重置交易密码</router-link></p>
 
     </div>
   </yd-popup>
@@ -148,29 +149,46 @@ export default {
 
       this.setPostData();
 
-			this.$http.post(`${this.HOST}/api.php?action=usercenter`,
+      if (this.type === 'login') {
+        this.modifyLoginPwd();
+      } else if (this.type === 'pay') {
+        this.modifyPayPwd();
+      }
+			
+		},
+    modifyLoginPwd() {
+      this.$http.post(`${this.HOST}/api.php?action=usercenter`,
         qs.stringify(this.postData)).then(response => {
 
         let data = response.data;
-
-        if(data.code == 200) {
-        	this.$dialog.toast({
+        this.handleSuccess(data)
+      })
+    },
+    modifyPayPwd() {
+      this.$http.get(`${this.HOST}/api.php?action=usercenter`, {
+        params: this.postData
+      }).then(response => {
+        let data = response.data;
+        this.handleSuccess(data)
+      })
+    },
+    handleSuccess(e) {
+      if(e.code == 200) {
+          this.$dialog.toast({
             mes: `${this.tips[this.type]}密码修改成功`,
             timeout: 1500
           });
-        	this.handleClose();
+          this.handleClose();
           if (this.type == 'login') {
             this.$router.replace({path: 'login'});
           }
         } else {
-        	this.$dialog.toast({
-            mes: data.data,
+          this.$dialog.toast({
+            mes: e.data,
             timeout: 1500
           });
         }
-
-      })
-		},
+    },
 		clear() {
 			this.oldPwd = '';
       this.newPwd = '';
@@ -203,4 +221,13 @@ export default {
 	.btn-wrap {
 		text-align: right;
 	}
+  .resetPaypwd {
+    margin-top: .25rem;
+    color: #666;
+    text-align: right;
+    font-size: .22rem;
+  }
+  .resetPaypwd a {
+    color: #ef4f4f;
+  }
 </style>
