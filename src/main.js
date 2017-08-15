@@ -1,8 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
-// 针对不同屏幕对html文字大小处理
-// 兼容rem
+// 弹性布局终端适配
 import './ydui/flexible.js';
 
 // 移动端点击事件300ms延迟
