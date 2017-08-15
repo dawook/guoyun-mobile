@@ -1,6 +1,6 @@
 <template>
-	<div class="crad">
-		<solt></solt>
+	<div class="crad" :style='setStyle'>
+		<slot></slot>
 	</div>
 </template>
 
@@ -19,6 +19,31 @@ export default {
 		mb: {
 			type: Number,
 			default: 0
+		},
+		isRem: {
+			type: Boolean,
+			default: true
+		}
+	},
+	computed: {
+		setStyle() {
+			let
+				aStyle = [],
+				unit = this.isRem ? 'rem' : 'px',
+				styleBR = {
+					borderRadius: `${this.borderRadius}${unit}`
+				},
+				styleMT = {
+					marginTop: `${this.mt}${unit}`
+				},
+				styleMB = {
+					marginBottom: `${this.mb}${unit}`
+				};
+				if (this.borderRadius) aStyle.push(styleBR);
+				if (this.mt) aStyle.push(styleMT);
+				if (this.mb) aStyle.push(styleMB);
+
+			return aStyle;
 		}
 	}
 }
@@ -30,7 +55,7 @@ export default {
 		position: relative;
 		margin-right: auto;
 		margin-left: auto;
-		padding: .25rem 0;
+		padding: 0;
 		width: 92%;
 		background-color: #fff;
 		overflow: hidden;
