@@ -121,8 +121,8 @@ export default {
 					{
 						"icon": 'stats-dots',
 						"title": '资金统计',
-						"link": '/user/found_record',
-						"cls": 'found-record'
+						"link": '/user/fund_statistics',
+						"cls": 'fund-statistics'
 					},
 					{
 						"icon": 'integral',
@@ -191,7 +191,7 @@ export default {
 	.list-recharge-record {color: #E5C600;}
 
 	.list-market-record {color: #7ECF94;}
-	.list-found-record {color: #F1853A;}
+	.list-fund-statistics {color: #F1853A;}
 	.list-integral {color: #7ECF94;}
 	.list-customer-server {color: #01A9F0;}
 

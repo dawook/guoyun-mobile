@@ -82,5 +82,9 @@ export default new Router({
 		path: '/user/reset_paypwd',
 		name: 'userResetPayPwd',
 		component: resolve => require(['@/pages/user/reset_pay_password.vue'], resolve)
+	}, {
+		path: '/user/fund_statistics',
+		name: 'userFundStatistics',
+		component: resolve => require(['@/pages/user/fund_statistics.vue'], resolve)
 	}]
 })
