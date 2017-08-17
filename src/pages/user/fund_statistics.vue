@@ -75,7 +75,8 @@ export default {
         }
       }).then(response => {
       	console.log(response.data);
-      	let e = response.data.data,
+      	let
+      		e = response.data.data,
       		account = e.account;
 
       	this.lists[0].num = e.interest.account_total;
