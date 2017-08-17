@@ -5,12 +5,18 @@ Vue.use(Router)
 
 export default new Router({
 	routes: [{
+		path: '*',
+		component: resolve => require(['@/pages/common/not_found.vue'], resolve)
+	}, {
 		path: '/',
 		name: 'Home',
 		component: resolve => require(['@/pages/home'], resolve),
 		mate: {
 			keepAlive: true
 		}
+	}, {
+		path: '/home',
+		redirect: '/'
 	}, {
 		path: '/login',
 		name: 'login',
