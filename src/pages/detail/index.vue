@@ -54,7 +54,7 @@
 	        </yd-flexbox-item>
 	        <yd-flexbox-item>
 	        	<i class="dy-icon-time"></i>
-	        	<p v-text='repayType'></p>
+	        	<p>{{data.payType}}</p>
 	        </yd-flexbox-item>
 	        <yd-flexbox-item>
 	        	<i class="dy-icon-buy_circle"></i>
@@ -134,7 +134,6 @@ export default {
 			endnum: 0,
 			title: '项目详情',
 			suffx: 0,
-			repayType: '到期还本付息',
 
 			tipsList: [
 				['资产锁定', '办理交接', '对外出售', '办理按揭', '项目结束'],
@@ -156,7 +155,6 @@ export default {
 		id: 'loadDetail',
 		data: function () {
 			this.getLeft();
-			this.getRepayType();
 			this.setSchedule();
 			this.setBtnTxt();
 		}
@@ -168,8 +166,6 @@ export default {
     	})).then(response => {
         let data = response.data.data;
         this.data = data;
-        
-        setStore('detail', data);
       })
 		},
 		getLeft() {
@@ -184,18 +180,7 @@ export default {
 				}
 			}
 		},
-		getRepayType() {
-			let data = this.data;
-			if (data.type == 3) {
-				this.repayType = '到期还本按季付息'
-			} else if (data.type == 2) {
-				if (data.borrow_style == "endmonth") {
-					this.repayType = '到期还本按季付息'
-				} else if (data.borrow_style == "yearmonth") {
-					this.repayType = '到期还本半年付息'
-				}
-			}
-		},
+		
 		setSchedule() {
 			this.list = this.tipsList[this.data.type - 1]
 		},

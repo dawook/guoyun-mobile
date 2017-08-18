@@ -74,7 +74,6 @@ export default {
 					token: this.token
         }
       }).then(response => {
-      	console.log(response.data);
       	let
       		e = response.data.data,
       		account = e.account;

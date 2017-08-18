@@ -86,5 +86,9 @@ export default new Router({
 		path: '/user/fund_statistics',
 		name: 'userFundStatistics',
 		component: resolve => require(['@/pages/user/fund_statistics.vue'], resolve)
+	}, {
+		path: '/user/market_record',
+		name: 'userMarketRecord',
+		component: resolve => require(['@/pages/user/market_record.vue'], resolve)
 	}]
 })

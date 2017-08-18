@@ -233,3 +233,48 @@ body {
 .popup--gray .popup-content {
   background-color: #f6f7f9;
 }
+
+// record style
+.records-list {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: #666;
+}
+
+.records-list__item {
+  position: relative;
+  margin: .25rem auto;
+  padding: .125rem;
+  background-color: #fff;
+  overflow: hidden;
+}
+.records-list__item:before,
+.records-list__item:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid #b2b2b2;
+  transform: scaleY(.5);
+  transform-origin: 0 0;
+}
+.records-list__item:before {
+  top: 0;
+}
+.records-list__item:after {
+  bottom: 0;
+}
+.records-list__span--12,
+.records-list__span--6 {
+  box-sizing: box-sizing;
+  float: left;
+  line-height: .54rem;
+}
+.records-list__span--12 {
+  width: 100%;
+}
+.records-list__span--6 {
+  width: 50%;
+}
