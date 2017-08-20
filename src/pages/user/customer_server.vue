@@ -45,7 +45,6 @@ export default {
       this.token = getStore("_user_token");
       this.kefu_name = getStore("_user_kefuid");
 
-      console.log(this.kefu_name)
     },
     load() {
       this.$http.get(`${this.HOST}/api.php?action=kefu`, {
