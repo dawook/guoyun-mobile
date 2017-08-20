@@ -90,5 +90,29 @@ export default new Router({
 		path: '/user/market_record',
 		name: 'userMarketRecord',
 		component: resolve => require(['@/pages/user/market_record.vue'], resolve)
+	}, {
+		path: '/user/recharge_record',
+		name: 'userRechargeRecord',
+		component: resolve => require(['@/pages/user/recharge_record.vue'], resolve)
+	}, {
+		path: '/user/cash_record',
+		name: 'userCashRecord',
+		component: resolve => require(['@/pages/user/cash_record.vue'], resolve)
+	}, {
+		path: '/user/fund_record',
+		name: 'userFundRecord',
+		component: resolve => require(['@/pages/user/fund_record.vue'], resolve)
+	}, {
+		path: '/user/stock_record',
+		name: 'userStockRecord',
+		component: resolve => require(['@/pages/user/stock_record.vue'], resolve)
+	}, {
+		path: '/user/integral',
+		name: 'userIntegral',
+		component: resolve => require(['@/pages/user/integral.vue'], resolve)
+	}, {
+		path: '/user/customer_server',
+		name: 'userCS',
+		component: resolve => require(['@/pages/user/customer_server.vue'], resolve)
 	}]
 })
