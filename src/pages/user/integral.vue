@@ -43,8 +43,6 @@
 <script>
 import qs from 'qs'
 import {getStore} from '@/utils/assist.js'
-import vLoading from '@/components/loading'
-import vNodata from '@/components/noData'
 
 export default {
   name: 'stockRecordPage',

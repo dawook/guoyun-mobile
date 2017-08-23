@@ -114,5 +114,9 @@ export default new Router({
 		path: '/user/customer_server',
 		name: 'userCS',
 		component: resolve => require(['@/pages/user/customer_server.vue'], resolve)
+	}, {
+		path: '/user/bank',
+		name: 'userBank',
+		component: resolve => require(['@/pages/user/bank.vue'], resolve)
 	}]
 })
