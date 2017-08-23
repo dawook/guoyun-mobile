@@ -8,7 +8,7 @@
 			<p class="bank-num">{{lists.account.replace(/(\d{4}|\*{4})/g,'$1 ').replace(/\s*$/,'')}}</p>
 		</div>
 
-		<div class="edit">
+		<div :class="['edit', {'edit--In': isEdit}]" v-if='isEdit'>
 			<yd-icon name="checkoff" size='.36rem'></yd-icon>
 			<yd-icon name="delete" size='.36rem' style='margin-left: .2rem'></yd-icon>
 		</div>
@@ -22,6 +22,10 @@ export default {
 	props: {
 		lists: {
 			type: [Array, Object]
+		},
+		isEdit: {
+			type: Boolean,
+			default: false
 		}
 	},
 	computed: {

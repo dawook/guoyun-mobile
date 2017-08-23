@@ -2,8 +2,19 @@
 	<div class="m-home m-home--fixed m-home--fixed-bottom">
     <yd-navbar title='银行卡管理' class='fixed'>
       <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
-      <span slot='right' class="app-text-main" v-if='!isEdit'>编辑</span>
-      <span slot='right' class="app-text-main" v-if='isEdit'>取消</span>
+      <template v-if='bankList.length>1'>
+      	<span
+	      	slot='right'
+	      	class="app-text-main"
+	      	v-if='!isEdit'
+	      	@click.stop='isEdit = true'>编辑</span>
+	      <span
+	      	slot='right'
+	      	class="app-text-main"
+	      	v-if='isEdit'
+	      	@click.stop='isEdit = false'>取消</span>
+      </template>
+      
     </yd-navbar>
 		
 		<v-loading v-if='isLoading'></v-loading>
@@ -12,6 +23,7 @@
 			<user-bank-card
 				v-for='(item, index) in bankList'
 				:key='index'
+				:isEdit='isEdit'
 				:lists='item'></user-bank-card>
 		</div>
 		<v-nodata v-if='!bankList.length && !isLoading'></v-nodata>
