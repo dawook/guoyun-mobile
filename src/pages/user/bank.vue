@@ -65,13 +65,15 @@ export default {
 				{
           label: '添加银行卡',
           method: () => {
-            this.$dialog.toast({mes: '咔擦，此人太帅！'});
+          	if (this.validBankNumber()) {
+							this.$dialog.toast({mes: '咔擦，此人太帅！'});
+          	}
           }
         },
         {
           label: '添加待还信用卡',
           method: () => {
-            this.$dialog.toast({mes: '看到了不该看到的东西！'});
+            this.addBank();
           }
         }
 			],
@@ -111,6 +113,47 @@ export default {
         	this.bankList = e.data;
         }
       })
+		},
+		validBankNumber() {
+			let
+				iCC = 0,
+				iBC = 0;
+
+			if (this.bankList.length < 3) return true;
+
+			if (this.bankList.length == 6) {
+				this.$dialog.toast({
+					mes: '仅支持添加银行卡和信用卡各三张!!!',
+	        timeout: 1500
+				});
+				return false;
+			}
+
+			for (let item of this.bankList) {
+				if(item.type == 1) {
+					iCC ++;
+				}else if (item.type == 0) {
+					iBC++;
+				}
+			}
+
+			if (iCC >= 3) {
+				this.$dialog.toast({
+					mes: '仅支持添加信用卡三张!!!',
+	        timeout: 1500
+				});
+				return false;
+			}
+
+			if (iBC >= 3) {
+				this.$dialog.toast({
+					mes: '仅支持添加银行卡三张!!!',
+	        timeout: 1500
+				});
+				return false;
+			}
+
+			return true;
 		},
 
 		handleChooseDefault(id) {
@@ -191,6 +234,9 @@ export default {
 
 			this.bankList = temp;
 			this.isEdit = false;
+		},
+		addBank() {
+			alert(5)
 		}
 	},
 	created() {
