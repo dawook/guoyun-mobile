@@ -3,8 +3,9 @@
     <yd-navbar title='资金统计中心' class='fixed'>
       <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
     </yd-navbar>
+		<v-loading v-if='isLoading'></v-loading>
 
-		<ul class="fund-list">
+		<ul class="fund-list" v-if='!isLoading'>
 			<li class="fund-list__item" v-for='(item, index) in lists' :key='index'>
 				{{item.name}}:
 				<span class="money">¥{{item.num}}</span>
@@ -16,11 +17,16 @@
 
 <script>
 import {getStore} from '@/utils/assist.js'
+import vLoading from '@/components/loading'
 
 export default {
 	name: 'fundStatistics',
+	components: {
+		vLoading
+	},
 	data() {
 		return {
+			isLoading: true,
 			user_id: '',
 			token: '',
 			lists: [{
@@ -87,6 +93,8 @@ export default {
       	this.lists[6].num = account.recharge_account_total;
       	this.lists[7].num = account.tender_account_total;
       	this.lists[8].num = account.cash_account_total;
+
+      	this.isLoading = false;
 			});
 		}
 	},

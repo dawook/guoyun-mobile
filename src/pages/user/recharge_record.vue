@@ -5,7 +5,7 @@
     </yd-navbar>
 
     <v-loading v-if='isLoading'></v-loading>
-    <v-nodata v-if='!dataList.length'></v-nodata>
+    <v-nodata v-if='!isLoading&&!dataList.length'></v-nodata>
 
     <yd-infinitescroll :on-infinite="load" ref="infiniteScroll">
 

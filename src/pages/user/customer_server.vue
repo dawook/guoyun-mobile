@@ -27,7 +27,7 @@
       </yd-cell-group>
     </template>
 
-    <template v-else>
+    <template v-if='!isLoading&&kefu_name'>
       <div class="cs-wrap">
         <div class="avatar">
           <img :src="host + myKF.avatar" :alt="myKF.adminname">

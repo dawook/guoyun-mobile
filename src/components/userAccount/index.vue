@@ -30,7 +30,7 @@
 
 <script>
 import qs from 'qs'
-import {getStore} from '@/utils/assist.js'
+import {getStore,setStore} from '@/utils/assist.js'
 
 export default {
   name: 'userAccount',
@@ -42,6 +42,20 @@ export default {
     }
   },
   methods: {
+    init() {
+      if(!getStore('_total_money')) {
+        this.getMoney();
+      } else {
+        this.setInfo();
+      }
+    },
+
+    setInfo() {
+      this.total = getStore('_total_money');
+      this.balance = getStore('_balance_money');
+      this.netMoney = getStore('_net_money');
+    },
+
     getMoney() {
       let 
         user_id = getStore("_user_id"),
@@ -56,9 +70,10 @@ export default {
           e = response.data,
           data = e.data;
         if(e.code == 200) {
-          this.total = data.total;
-          this.balance = data.balance;
-          this.netMoney = data.repay_account_interest;
+          setStore('_total_money', data.total);
+          setStore('_balance_money', data.balance);
+          setStore('_net_money', data.repay_account_interest);
+          this.setInfo();
         } else {
           this.$dialog.toast({
             mes: e.data,
@@ -74,7 +89,7 @@ export default {
     }
   },
   created() {
-    this.getMoney();
+    this.init();
   }
 }
 </script>

@@ -5,24 +5,23 @@
     </yd-navbar>
 
     <v-loading v-if='isLoading'></v-loading>
-    <v-nodata v-if='!dataList.length'></v-nodata>
+    <v-nodata v-if='!isLoading&&!dataList.length'></v-nodata>
 
     <yd-infinitescroll :on-infinite="load" ref="infiniteScroll">
 
       <ul class="records-list" slot='list'>
         <li class="records-list__item" v-for='(item, index) in dataList' :key='index'>
-          <div class="records-list__span--6">类型：{{item.type}}</div>
+          <div class="records-list__span--12">类型：{{item.type}}</div>
           <div class="records-list__span--6">存入：¥ {{item.income_new}}</div>
 
           <div class="records-list__span--6">支出：¥ {{item.expend_new}}</div>
-          <div class="records-list__span--6">总额：¥ {{item.total}}</div>
 
           <div class="records-list__span--6">余额：¥ {{item.balance}}</div>
           <div class="records-list__span--6">提现时间：
             {{new Date(parseInt(item.addtime) * 1000).toLocaleString().substr(0,10)}}
           </div>
 
-          <div class="records-list__span--6">备注：¥ {{item.remark}}</div>
+          <div class="records-list__span--12">备注：{{item.remark}}</div>
         </li>
       </ul>
 

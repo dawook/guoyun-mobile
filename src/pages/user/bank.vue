@@ -24,7 +24,9 @@
 				v-for='(item, index) in bankList'
 				:key='index'
 				:isEdit='isEdit'
-				:lists='item'></user-bank-card>
+				:lists='item'
+				@handleDefault='handleChooseDefault'
+				@handleDelete='handleDeleteBank'></user-bank-card>
 		</div>
 		<v-nodata v-if='!bankList.length && !isLoading'></v-nodata>
 		
@@ -107,7 +109,13 @@ export default {
         	this.bankList = e.data;
         }
       })
-		}
+		},
+		handleChooseDefault(id) {
+			alert(id)
+		},
+		handleDeleteBank(id) {
+			alert(id)
+		},
 	},
 	created() {
 		this.chechRealName();

@@ -9,8 +9,8 @@
 		</div>
 
 		<div :class="['edit', {'edit--In': isEdit}]" v-if='isEdit'>
-			<yd-icon name="checkoff" size='.36rem'></yd-icon>
-			<yd-icon name="delete" size='.36rem' style='margin-left: .2rem'></yd-icon>
+			<yd-icon name="checkoff" size='.36rem' @click.native='handleDefault'></yd-icon>
+			<yd-icon name="delete" size='.36rem' style='margin-left: .2rem' @click.native='handleDelete'></yd-icon>
 		</div>
 
 	</div>
@@ -32,6 +32,52 @@ export default {
 		clsObj() {
 			return [`bank-card`, `bank-card--${this.lists.bank}`]
 		}
+	},
+	data() {
+		return {
+			data: ''
+		}
+	},
+	methods: {
+		handleDefault() {
+			this.$dialog.confirm({
+        title: '提示',
+        mes: `是否选择卡号【${this.data.account}】为默认银行卡?`,
+        opts: [
+          {
+            txt: '取消',
+            color: false
+          }, {
+            txt: '确认选择',
+            color: false,
+            callback: () => {
+              this.$emit('handleDefault', this.data.id);
+            }
+          }
+        ]
+      });
+		},
+		handleDelete() {
+			this.$dialog.confirm({
+        title: '提示',
+        mes: `是否删除卡号为【${this.data.account}】的银行卡?`,
+        opts: [
+          {
+            txt: '取消',
+            color: false
+          }, {
+            txt: '确认删除',
+            color: false,
+            callback: () => {
+              this.$emit('handleDelete', this.data.id);
+            }
+          }
+        ]
+      });
+		}
+	},
+	created() {
+		this.data = this.lists;
 	}
 }
 </script>

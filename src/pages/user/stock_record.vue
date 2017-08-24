@@ -16,19 +16,19 @@
     </yd-grids-group>
 
     <v-loading v-if='isLoading'></v-loading>
-    <v-nodata v-if='!dataList.length'></v-nodata>
+    <v-nodata v-if='!isLoading&&!dataList.length'></v-nodata>
 
 
     <yd-infinitescroll :on-infinite="load" ref="infiniteScroll">
 
       <ul class="records-list" slot='list'>
         <li class="records-list__item" v-for='(item, index) in dataList' :key='index'>
-          <div class="records-list__span--6">认购金额：¥{{item.account}}</div>
-          <div class="records-list__span--6">占股比例： {{item.sharescale}}</div>
+          <div class="records-list__span--6">认购金额：¥ {{item.account}}</div>
+          <div class="records-list__span--6">占股比例： {{item.sharescale}}%</div>
 
-          <div class="records-list__span--6">购买方式：</div>
+          <div class="records-list__span--6">购买方式：{{item.is_mobile == 0 ? 'PC端' : '移动端'}}</div>
           <div class="records-list__span--6">购买时间：
-            {{new Date(parseInt(item.addtime) * 1000).toLocaleString()}}
+            {{new Date(parseInt(item.addtime) * 1000).toLocaleString().substr(0,10)}}
           </div>
 
         </li>

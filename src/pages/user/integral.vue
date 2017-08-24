@@ -45,11 +45,7 @@ import qs from 'qs'
 import {getStore} from '@/utils/assist.js'
 
 export default {
-  name: 'stockRecordPage',
-  components: {
-    vLoading,
-    vNodata
-  },
+  name: 'integralPage',
   data() {
     return {
       user_id: '',
