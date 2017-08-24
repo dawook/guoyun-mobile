@@ -77,7 +77,9 @@ export default {
 			],
 			user_id: '',
 			token: '',
-			bankList: []
+			bankList: [],
+			chooseDefaultId: '',
+			chooseDeleteId: ''
 		}
 	},
 	methods: {
@@ -110,12 +112,86 @@ export default {
         }
       })
 		},
+
 		handleChooseDefault(id) {
-			alert(id)
+			this.chooseDefaultId = id;
+
+			this.$http.post(`${this.HOST}/api.php?action=usercenter`, qs.stringify({
+				type: "bank_default",
+				user_id: this.user_id,
+        token: this.token,
+				id: id
+			})).then(response => {
+				let e = response.data;
+				if (e.code == 200) {
+					this.$dialog.toast({
+						mes: '修改成功!',
+	          timeout: 1500,
+	          icon: 'success'
+					});
+					this.successDefault();
+
+
+				} else {
+					this.$dialog.toast({
+						mes: e.data,
+	          timeout: 1500
+					})
+				}
+			})
+		},
+		successDefault() {
+			let list = this.bankList,
+				sid = this.chooseDefaultId;
+			for (let i = 0, iL = list.length; i < iL; i++) {
+				if (list[i].id == sid) {
+					list[i].defaults = '1';
+				}else {
+					list[i].defaults = '0';
+				}
+			}
+			this.bankList = list;
+			this.isEdit = false;
 		},
 		handleDeleteBank(id) {
-			alert(id)
+			this.chooseDeleteId = id;
+
+			this.$http.post(`${this.HOST}/api.php?action=usercenter`, qs.stringify({
+				type: "bank_del",
+				user_id: this.user_id,
+        token: this.token,
+				id: id
+			})).then(response => {
+				let e = response.data;
+				if (e.code == 200) {
+					this.$dialog.toast({
+						mes: '删除成功!',
+	          timeout: 1500
+					})
+					this.successDelet();
+				} else {
+					this.$dialog.toast({
+						mes: e.data,
+	          timeout: 1500
+					})
+				}
+			})
 		},
+		successDelet() {
+			let
+				list = this.bankList,
+				temp = [],
+				sid = this.chooseDeleteId;
+
+			for (let i = 0, iL = list.length; i < iL; i++) {
+				if (list[i].id != sid) {
+					temp.push(list[i]);
+				}
+			}
+
+			this.bankList = temp;
+			this.isEdit = false;
+		}
 	},
 	created() {
 		this.chechRealName();
