@@ -1,10 +1,6 @@
 <template>
-	<yd-popup v-model="isShow" position="right" width="100%" class='popup--gray'>
-		<yd-navbar title='设置' class='navbar'>
-      <yd-navbar-back-icon @click.native='handleClose' slot="left"></yd-navbar-back-icon>
-    </yd-navbar>
-    <div class="container">
-
+	<v-page :isShow = 'isShow' title='设置' @pageClose='handleClose'>
+		<div slot='main'>
       <yd-cell-group>
         <yd-cell-item :arrow='!realName' @click.native='setRealname'>
           <span slot="left">实名认证</span>
@@ -29,22 +25,23 @@
 			<div class="btn-wrap">
 				<yd-button size="large" type="danger" @click.native='exit'>退出登录</yd-button>
 			</div>
-
     </div>
 
-		<user-real-name
-      :bPopupRealname='bPopupRealname'
-      @realNameClose='realNameClose'></user-real-name>
-		<user-modify-pwd
-      :bModifyPwd='bModifyPwd'
-      :type='modifyType'
-      @modifyPwdClose='modifyPwdClose'></user-modify-pwd>
-
-  </yd-popup>
+    <div slot='other'>
+    	<user-real-name
+	      :bPopupRealname='bPopupRealname'
+	      @realNameClose='realNameClose'></user-real-name>
+			<user-modify-pwd
+	      :bModifyPwd='bModifyPwd'
+	      :type='modifyType'
+	      @modifyPwdClose='modifyPwdClose'></user-modify-pwd>
+    </div>
+	</v-page>
 </template>
 
 <script>
 import {setStore, getStore, clearStore} from '@/utils/assist.js'
+import vPage from '@/components/pages'
 import userRealName from '@/components/userRealName'
 import userModifyPwd from '@/components/userModifyPwd'
 
@@ -57,6 +54,7 @@ export default {
 		}
 	},
 	components: {
+		vPage,
 		userRealName,
 		userModifyPwd
 	},
@@ -109,16 +107,6 @@ export default {
 </script>
 
 <style scoped>
-	.navbar {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 10;
-	}
-	.container {
-		margin-top: 1rem;
-	}
 	.btn-wrap {
 		margin: 0 auto;
 		width: 90%;

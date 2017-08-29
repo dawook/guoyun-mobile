@@ -39,6 +39,15 @@
 			v-model="isActionsheet"
 			cancel="取消">
 		</yd-actionsheet>
+
+		<add-bank
+			:isShow='bBank'
+			@bankClose='bBank = false'
+			@handleSuccess='handleSuccess'></add-bank>
+		<add-credit
+			:isShow='bCredit'
+			@bankClose='bCredit = false'
+			@handleSuccess='handleSuccessCredit'></add-credit>
   </div>
 </template>
 
@@ -48,13 +57,17 @@ import {getStore} from '@/utils/assist.js'
 import userBankCard from '@/components/userBankCard'
 import vLoading from '@/components/loading'
 import vNodata from '@/components/noData'
+import addBank from './add_bank.vue'
+import addCredit from './add_credit.vue'
 
 export default {
 	name: 'bankPage',
 	components: {
 		userBankCard,
 		vLoading,
-		vNodata
+		vNodata,
+		addBank,
+		addCredit
 	},
 	data() {
 		return {
@@ -66,14 +79,16 @@ export default {
           label: '添加银行卡',
           method: () => {
           	if (this.validBankNumber()) {
-							this.$dialog.toast({mes: '咔擦，此人太帅！'});
+							this.addBank();
           	}
           }
         },
         {
           label: '添加待还信用卡',
           method: () => {
-            this.addBank();
+            if (this.validBankNumber(1)) {
+							this.addCredit();
+          	}
           }
         }
 			],
@@ -81,7 +96,10 @@ export default {
 			token: '',
 			bankList: [],
 			chooseDefaultId: '',
-			chooseDeleteId: ''
+			chooseDeleteId: '',
+
+			bBank: false,
+			bCredit: false
 		}
 	},
 	methods: {
@@ -111,10 +129,11 @@ export default {
         this.isLoading = false;
         if (e.code == 200) {
         	this.bankList = e.data;
+        	console.log(e.data)
         }
       })
 		},
-		validBankNumber() {
+		validBankNumber(itype = 0) {
 			let
 				iCC = 0,
 				iBC = 0;
@@ -137,7 +156,7 @@ export default {
 				}
 			}
 
-			if (iCC >= 3) {
+			if (iCC >= 3 && itype == 1) {
 				this.$dialog.toast({
 					mes: '仅支持添加信用卡三张!!!',
 	        timeout: 1500
@@ -145,7 +164,7 @@ export default {
 				return false;
 			}
 
-			if (iBC >= 3) {
+			if (iBC >= 3 && itype == 0) {
 				this.$dialog.toast({
 					mes: '仅支持添加银行卡三张!!!',
 	        timeout: 1500
@@ -236,7 +255,18 @@ export default {
 			this.isEdit = false;
 		},
 		addBank() {
-			alert(5)
+			this.bBank = true;
+		},
+		addCredit() {
+			this.bCredit = true;
+		},
+		handleSuccess(val) {
+			this.bBank = false;
+			this.bankList.unshift(val)
+		},
+		handleSuccessCredit(val) {
+			this.bCredit = false;
+			this.bankList.unshift(val)
 		}
 	},
 	created() {

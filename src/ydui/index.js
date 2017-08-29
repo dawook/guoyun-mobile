@@ -115,6 +115,10 @@ import {
 	ActionSheet
 } from 'vue-ydui/dist/lib.rem/actionsheet';
 
+import {
+	CitySelect
+} from 'vue-ydui/dist/lib.rem/cityselect';
+
 
 
 Vue.component(Button.name, Button);
@@ -155,6 +159,7 @@ Vue.component(LightBoxTxt.name, LightBoxTxt);
 Vue.component(GridsItem.name, GridsItem);
 Vue.component(GridsGroup.name, GridsGroup);
 Vue.component(ActionSheet.name, ActionSheet);
+Vue.component(CitySelect.name, CitySelect);
 
 
 Vue.prototype.$dialog = {
