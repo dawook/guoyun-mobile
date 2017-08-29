@@ -75,7 +75,7 @@ import qs from 'qs'
 import {setStore, getStore} from '@/utils/assist.js'
 import vPage from '@/components/pages'
 import popupCheck from '@/components/popupCheck'
-import District from 'ydui-district/dist/gov_province_city_area_id'
+import District from '@/assets/js/gov_province_city_area_id'
 
 export default {
 	name: 'addBank',
