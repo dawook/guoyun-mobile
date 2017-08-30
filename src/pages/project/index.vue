@@ -3,10 +3,11 @@
     <yd-navbar :title='title' class='fixed'>
       <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
     </yd-navbar>
-
+    
+    
     <yd-infinitescroll :on-infinite="load" ref="infiniteScroll">
-
-      <v-list :datas="listData" slot="list"></v-list>
+      <v-loading slot="list" v-if='isLoad'></v-loading>
+      <v-list :datas="listData" slot="list" v-if='!isLoad'></v-list>
 
       <!-- 数据全部加载完毕显示 -->
       <span slot="doneTip" class='dont-tips'>到底了，别扯了</span>
@@ -21,14 +22,17 @@
 
 <script>
 import vList from '@/components/projectList'
+import vLoading from '@/components/loading'
 
 export default {
   name: 'projectPage',
   components: {
-    vList
+    vList,
+    vLoading
   },
   data() {
     return {
+      isLoad: true,
       type: '',
       ipage: 1,
       title: '',
@@ -50,6 +54,8 @@ export default {
         for (let i = 0, iL = data.list.length; i < iL; i++) {
           this.listData.push(data.list[i])
         }
+
+        this.isLoad = false;
 
         if (this.ipage >= this.totalPage) {
           /* 所有数据加载完毕 */

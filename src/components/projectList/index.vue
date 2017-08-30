@@ -5,7 +5,9 @@
 			<span v-text='title'></span>
 			<span class="tips" v-text='subTitle' v-if='subTitle'></span>
 		</div>
-		<ul class="project__list line-1px--top">
+		<v-load v-if='!datas.length'></v-load>
+
+		<ul class="project__list line-1px--top" v-if='datas.length'>
 			<li class="project__list-item line-1px"
 				v-for='(item, index) in datas'
 				:key='index'>
@@ -26,6 +28,7 @@
 
 <script>
 import listContent from './content.vue'
+import vLoad from '@/components/loading'
 
 export default {
 	name: 'vList',
@@ -51,7 +54,8 @@ export default {
 		}
 	},
 	components: {
-		listContent
+		listContent,
+		vLoad
 	},
 	computed: {
 		iconCls() {

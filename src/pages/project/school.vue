@@ -7,21 +7,30 @@
     <div class="school__banner">
     	<img :src="img">
     </div>
-
-    <school-list title="商学院" subTitle="尊贵服务，即刻开启" icon='school' :datas='listData'></school-list>
+    
+    <v-loading v-if='isLoad'></v-loading>
+    <school-list
+      title="商学院"
+      subTitle="尊贵服务，即刻开启"
+      icon='school'
+      :datas='listData'
+      v-if='!isLoad'></school-list>
   </div>
 </template>
 
 <script>
 import schoolList from '@/components/schoolList'
+import vLoading from '@/components/loading'
 
 export default {
   name: 'projectPage',
   components: {
-    schoolList
+    schoolList,
+    vLoading
   },
   data() {
     return {
+      isLoad: true,
     	img: require('@/assets/images/school_banner.jpg'),
       listData: []
     }
@@ -30,6 +39,7 @@ export default {
     load() {
       this.$http.get(`${this.HOST}/api.php?action=school`).then(response => {
       	this.listData = response.data.data.list;
+        this.isLoad = false;
       })
     }
   },

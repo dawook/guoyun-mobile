@@ -3,8 +3,9 @@
     <yd-navbar :title='title' class='fixed'>
       <yd-navbar-back-icon v-back slot="left"></yd-navbar-back-icon>
     </yd-navbar>
+		<v-loading v-if='isLoad'></v-loading>
 
-    <div class="main">
+    <div class="main" v-if='!isLoad'>
     	<div class="top-card">
 				<h2 class="title" v-text='data.name'></h2>
 				<p class="num">编号：{{data.borrow_nid}}</p>
@@ -116,19 +117,23 @@
 import qs from 'qs'
 import {setStore, pageScroll, scrollTop} from '@/utils/assist.js'
 
+import vLoading from '@/components/loading'
 import vProgress from '@/components/progress'
 import assets from './assets.vue'
 import buyersList from './buyersList.vue'
 
+
 export default {
 	name: 'detail',
 	components: {
+		vLoading,
 		vProgress,
 		assets,
 		buyersList
 	},
 	data() {
 		return {
+			isLoad: true,
 			id: 0,
 			data: {},
 			endnum: 0,
@@ -166,6 +171,7 @@ export default {
     	})).then(response => {
         let data = response.data.data;
         this.data = data;
+        this.isLoad = false;
       })
 		},
 		getLeft() {
