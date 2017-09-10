@@ -102,7 +102,7 @@
 
 <script>
 import qs from 'qs'
-import {setStore, pageScroll, scrollTop} from '@/utils/assist.js'
+import {setStore, getStore, pageScroll, scrollTop} from '@/utils/assist.js'
 
 import vLoading from '@/components/loading'
 import vProgress from '@/components/progress'
@@ -194,18 +194,41 @@ export default {
 
 			this.bBtn = true;
 		},
-
+		isLogin() {
+			if(!getStore("_user_id")) {
+					this.$dialog.confirm({
+            title: '国运产权',
+            mes: '检测到您还未登录！',
+            opts: [{
+              txt: '取消',
+              color: false
+            },{
+              txt: '没有账号？',
+              color: true,
+              callback: () => {
+                this.$router.push('/register');
+              }
+            },{
+              txt: '前往登陆',
+              color: true,
+              callback: () => {
+                this.$router.push('/login');
+              }
+            }]
+          });
+				}
+		},
 		handleBuy() {
+
 			if (this.iBtn !== 1) {
 				this.$dialog.toast({
           mes: `项目${this.btnTextList[this.iBtn]} ~ ~`,
           timeout: 1500
         });
 			} else {
-
+				this.isLogin();
 			}
 		},
-
 
 		// popup
 		popupClose(val) {
