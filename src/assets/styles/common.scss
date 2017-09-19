@@ -188,6 +188,7 @@ body {
 }
 .dont-tips:before,
 .dont-tips:after {
+
   position: absolute;
   z-index: -1;
   content: "";
